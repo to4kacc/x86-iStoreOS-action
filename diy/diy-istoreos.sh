@@ -10,9 +10,9 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 # sed -i 's/procd_set_param stderr 1/procd_set_param stderr 0/g' feeds/packages/utils/ttyd/files/ttyd.init
 
 # 修改默认密码
-sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
-rm -rf include/version.mk
-cp -af feeds/istoreos_ipk/patch/istoreos-24.10/version.mk include
+#sed -i 's/root:::0:99999:7:::/root:$1$5mjCdAB1$Uk1sNbwoqfHxUmzRIeuZK1:0:0:99999:7:::/g' package/base-files/files/etc/shadow
+#rm -rf include/version.mk
+#cp -af feeds/istoreos_ipk/patch/istoreos-24.10/version.mk include
 
 ##取消bootstrap为默认主题
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
@@ -54,6 +54,13 @@ rm -rf feeds/third_party/luci-app-LingTiGameAcc
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/third/luci-theme-argon
 rm -rf feeds/istoreos_ipk/patch/istoreos-24.10/istoreos-files
+
+# istoreos-theme
+#rm -rf feeds/luci/themes/luci-theme-argon
+cp -r feeds/theme/luci-theme-argon feeds/luci/themes/luci-theme-argon
+
+rm -rf feeds/third/luci-app-argon-config
+cp -r feeds/theme/luci-app-argon-config feeds/luci/applications/luci-app-argon-config
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
