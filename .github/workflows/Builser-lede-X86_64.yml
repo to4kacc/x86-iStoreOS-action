@@ -1,4 +1,4 @@
-name: Builser-lede-X86_64
+name: Builser-Lede-X86_64
 
 #CI计划
 on:
