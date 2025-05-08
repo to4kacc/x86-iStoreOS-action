@@ -126,6 +126,9 @@ git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geoda
 # 锐捷认证
 # git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
 
+# vlmcsd
+git clone https://github.com/AutoCONFIG/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd -b master
+
 # Adguardhome
 # git_sparse_clone master https://github.com/kenzok8/openwrt-packages adguardhome luci-app-adguardhome
 
