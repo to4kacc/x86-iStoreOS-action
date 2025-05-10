@@ -71,7 +71,7 @@ rm -rf feeds/luci/applications/{shadowsocksr-libev,shadowsocks-rust,luci-app-ssr
 rm -rf feeds/luci/packages/net/{shadowsocksr-libev-ssr-check,shadowsocksr-libev-ssr-local,shadowsocksr-libev-ssr-redir,shadowsocksr-libev-ssr-server}
 # 将packages源的相关文件替换成passwall_packages源的
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
-
+rm -rf feeds/istoreos_ipk/geoview
 rm -rf feeds/third_party/luci-app-smartdns
 rm -rf feeds/third_party/smartdns
 rm -rf feeds/istoreos_ipk/op-mosdns
@@ -100,6 +100,7 @@ cp -r feeds/small/chinadns-ng feeds/packages/net
 cp -r feeds/small/dns2socks feeds/packages/net
 cp -r feeds/small/ipt2socks feeds/packages/net
 cp -r feeds/small/microsocks feeds/packages/net
+cp -r feeds/small/geoview feeds/packages/net
 
 
 # istoreos-theme
