@@ -70,6 +70,17 @@ rm -rf feeds/luci/applications/{shadowsocksr-libev,shadowsocks-rust,luci-app-ssr
 rm -rf feeds/luci/packages/net/{shadowsocksr-libev-ssr-check,shadowsocksr-libev-ssr-local,shadowsocksr-libev-ssr-redir,shadowsocksr-libev-ssr-server}
 # 将packages源的相关文件替换成passwall_packages源的
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
+rm -rf feeds/istoreos_ipk/geoview
+rm -rf feeds/third_party/luci-app-smartdns
+rm -rf feeds/third_party/smartdns
+rm -rf feeds/istoreos_ipk/op-mosdns
+rm -rf feeds/istoreos_ipk/xray-core
+rm -rf feeds/istoreos_ipk/sing-box
+rm -rf feeds/istoreos_ipk/chinadns-ng
+rm -rf feeds/istoreos_ipk/microsocks
+rm -rf feeds/istoreos_ipk/dns2socks
+rm -rf feeds/istoreos_ipk/ipt2socks
+
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/net/v2ray-geodata
@@ -86,8 +97,9 @@ cp -r feeds/small/v2ray-geoip feeds/packages/net
 cp -r feeds/small/sing-box feeds/packages/net
 cp -r feeds/small/chinadns-ng feeds/packages/net
 cp -r feeds/small/dns2socks feeds/packages/net
-cp -r feeds/small/dns2tcp feeds/packages/net
+cp -r feeds/small/ipt2socks feeds/packages/net
 cp -r feeds/small/microsocks feeds/packages/net
+cp -r feeds/small/geoview feeds/packages/net
 
 # istoreos-theme
 rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
