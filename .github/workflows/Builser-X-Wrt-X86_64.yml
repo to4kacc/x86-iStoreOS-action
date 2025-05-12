@@ -1,4 +1,4 @@
-name: Builser-ImmortalwWrt-X86_64
+name: Builser-X-wWrt-X86_64
 
 #CI计划
 on:
@@ -11,10 +11,10 @@ on:
   workflow_dispatch:
 
 env:
-  REPO_URL: https://github.com/immortalwrt/immortalwrt.git
+  REPO_URL: https://github.com/x-wrt/x-wrt.git
   REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/x86_64-x-wrt.config
-  DIY_SCRIPT: diy/diy-xwrt.sh
+  DIY_SCRIPT: diy/diy-x-wrt.sh
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
