@@ -1,4 +1,4 @@
-name: Builser-X-wWrt-X86_64
+name: Builser-X-Wrt-X86_64
 
 #CI计划
 on:
@@ -12,7 +12,7 @@ on:
 
 env:
   REPO_URL: https://github.com/x-wrt/x-wrt.git
-  REPO_BRANCH: openwrt-24.10
+  REPO_BRANCH: master
   CONFIG_FILE: configs/x86_64-x-wrt.config
   DIY_SCRIPT: diy/diy-x-wrt.sh
   CLASH_KERNEL: amd64
