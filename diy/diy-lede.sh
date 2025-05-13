@@ -85,6 +85,8 @@ rm -rf feeds/istoreos_ipk/microsocks
 rm -rf feeds/istoreos_ipk/dns2socks
 rm -rf feeds/istoreos_ipk/ipt2socks
 rm -rf package/feeds/istoreos_ipk/vlmcsd
+rm -rf feeds/istoreos_ipk/vlmcsd
+rm -rf feeds/istoreos_ipk/vlmcsd
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/net/v2ray-geodata
