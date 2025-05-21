@@ -85,7 +85,7 @@ rm -rf feeds/istoreos_ipk/microsocks
 rm -rf feeds/istoreos_ipk/dns2socks
 rm -rf feeds/istoreos_ipk/ipt2socks
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-vlmcsd
-
+rm -rf feeds/istoreos_ipk/patch/istoreos-24.10
 rm -rf feeds/istoreos_ipk/vlmcsd
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/mosdns
