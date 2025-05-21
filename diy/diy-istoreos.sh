@@ -85,7 +85,7 @@ rm -rf feeds/istoreos_ipk/chinadns-ng
 rm -rf feeds/istoreos_ipk/microsocks
 rm -rf feeds/istoreos_ipk/dns2socks
 rm -rf feeds/istoreos_ipk/ipt2socks
-
+rm -rf feeds/istoreos_ipk/patch/istoreos-24.10
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/net/v2ray-geodata
