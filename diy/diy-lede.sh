@@ -106,7 +106,7 @@ cp -r feeds/small/dns2socks feeds/packages/net
 cp -r feeds/small/ipt2socks feeds/packages/net
 cp -r feeds/small/microsocks feeds/packages/net
 cp -r feeds/small/geoview feeds/packages/net
-
+rm -rf feeds/istoreos_ipk/patch/istoreos-24.10
 # istoreos-theme
 rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
 cp -r feeds/theme/luci-theme-argon feeds/luci/themes/luci-theme-argon
