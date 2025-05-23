@@ -111,6 +111,7 @@ cp -r feeds/small/geoview feeds/packages/net
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/third/luci-theme-argon
+rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
 #cp -r feeds/theme/luci-theme-argon feeds/luci/themes/luci-theme-argon
 rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-argon-config
