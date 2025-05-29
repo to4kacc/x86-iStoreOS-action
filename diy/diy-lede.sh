@@ -159,6 +159,11 @@ git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-ap
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-passwall
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-vlmcsd
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages vlmcsd
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
+
+
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
 # git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
