@@ -161,6 +161,7 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-socat
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-dockerman
 
 
 # golong1.24.2依赖
