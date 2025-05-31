@@ -75,7 +75,7 @@ rm -rf feeds/small/{shadowsocksr-libev,shadowsocks-rust,luci-app-ssr-plus,luci-i
 rm -rf feeds/luci/applications/{shadowsocksr-libev,shadowsocks-rust,luci-app-ssr-plus,luci-i18n-ssr-plus-zh-cn,luci-app-ssr-plus,luci-i18n-ssr-plus-zh-cn,luci-app-wol,luci-app-bypass,luci-app-argon-config,luci-theme-argon}
 rm -rf feeds/luci/packages/net/{shadowsocksr-libev-ssr-check,shadowsocksr-libev-ssr-local,shadowsocksr-libev-ssr-redir,shadowsocksr-libev-ssr-server}
 # 将packages源的相关文件替换成passwall_packages源的
-#rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
 rm -rf feeds/istoreos_ipk/geoview
 rm -rf feeds/third_party/luci-app-smartdns
 rm -rf feeds/third_party/smartdns
@@ -155,7 +155,7 @@ function merge_package() {
 
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
-#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-passwall
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-passwall
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-socat
