@@ -155,7 +155,7 @@ function merge_package() {
 
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-passwall
+#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-passwall
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
 
@@ -168,16 +168,6 @@ rm -rf feeds/packages/lang/golang
 # git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
-# SSRP & Passwall
-git clone https://git.kejizero.online/zhao/openwrt_helloworld.git package/helloworld -b v5
-rm -rf package/helloworld/luci-app-openclash
-
-# Alist
-git clone https://git.kejizero.online/zhao/luci-app-alist package/alist
-
-# Mosdns
-git clone https://git.kejizero.online/zhao/luci-app-mosdns.git -b v5 package/mosdns
-git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geodata
 
 # 锐捷认证
 # git clone https://github.com/sbwml/luci-app-mentohust package/mentohust
@@ -188,16 +178,6 @@ git clone https://git.kejizero.online/zhao/v2ray-geodata.git package/v2ray-geoda
 # default-settings
 # git clone --depth=1 -b dev https://github.com/Jaykwok2999/default-settings package/default-settings
 
-# UPnP
-rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
-git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
-git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
-
-# Lucky
-# git clone https://github.com/gdy666/luci-app-lucky.git package/lucky
-
-# luci-app-webdav
-# git clone https://git.kejizero.online/zhao/luci-app-webdav package/new/luci-app-webdav
 
 # unzip
 rm -rf feeds/packages/utils/unzip
@@ -211,6 +191,10 @@ sed -i 's,frp 客户端,frpc 客户端,g' feeds/luci/applications/luci-app-frpc/
 # 必要的补丁
 pushd feeds/luci
    curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
+popd
+
+pushd
+   curl -sSL https://raw.githubusercontent.com/Jaykwok2999/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 popd
 
 # NTP
