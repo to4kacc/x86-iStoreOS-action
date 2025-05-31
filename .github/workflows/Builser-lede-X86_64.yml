@@ -115,9 +115,11 @@ jobs:
         sed -i "10isrc-git kenzo https://github.com/kenzok8/openwrt-packages;master\n" feeds.conf.default          
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        ## 强制默认r2s/r4s/r5s编译内核为6.6  
-        sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.6/g" target/linux/mediatek/Makefile
-        sed -i "s/KERNEL_PATCHVER=*.*/KERNEL_PATCHVER=6.6/g" target/linux/mediatek/Makefile    
+        
+        ## 强制默认编译内核为6.6   
+        sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.6/g" target/linux/x86/Makefile
+        sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.6/g" target/linux/x86/Makefile           
+        
     - name: Load Custom Configuration
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
