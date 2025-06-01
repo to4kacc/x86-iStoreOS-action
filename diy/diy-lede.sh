@@ -108,7 +108,7 @@ cp -r feeds/small/microsocks feeds/packages/net
 cp -r feeds/small/geoview feeds/packages/net
 
 rm -rf feeds/small/luci-app-passwall
-rm -rf feeds/kenzo/{luci-app-argon-config,luci-app-argon}
+rm -rf feeds/kenzo/{luci-app-argon-config,luci-theme-argon}
 
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
