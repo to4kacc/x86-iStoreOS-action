@@ -102,23 +102,23 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
-        sed -i "1isrc-git diskman https://github.com/jjm2473/luci-app-diskman.git;dev\n" feeds.conf.default
+        #sed -i "1isrc-git diskman https://github.com/jjm2473/luci-app-diskman.git;dev\n" feeds.conf.default
         #sed -i "2isrc-git third_party https://github.com/linkease/istore-packages.git;main\n" feeds.conf.default
-        sed -i "2isrc-git oaf https://github.com/jjm2473/OpenAppFilter.git;dev4\n" feeds.conf.default
-        sed -i "3isrc-git jjm2473_apps https://github.com/jjm2473/openwrt-apps.git;main\n" feeds.conf.default        
-        sed -i "4isrc-git istoreos_ipk https://github.com/Jaykwok2999/istoreos-ipk.git;main\n" feeds.conf.default        
-        sed -i "5isrc-git turboacc https://github.com/chenmozhijin/turboacc.git;luci\n" feeds.conf.default        
-        sed -i "6isrc-git turboaccpackage https://github.com/chenmozhijin/turboacc.git;package\n" feeds.conf.default        
-        sed -i "7isrc-git theme https://github.com/sbwml/luci-theme-argon;openwrt-24.10\n" feeds.conf.default        
-        sed -i "8isrc-git appvlmcsd https://github.com/AutoCONFIG/luci-app-vlmcsd;master\n" feeds.conf.default        
-        sed -i "9isrc-git small https://github.com/kenzok8/small;master\n" feeds.conf.default      
-        sed -i "10isrc-git kenzo https://github.com/kenzok8/openwrt-packages;master\n" feeds.conf.default          
+        #sed -i "2isrc-git oaf https://github.com/jjm2473/OpenAppFilter.git;dev4\n" feeds.conf.default
+        #sed -i "3isrc-git jjm2473_apps https://github.com/jjm2473/openwrt-apps.git;main\n" feeds.conf.default        
+        #sed -i "4isrc-git istoreos_ipk https://github.com/Jaykwok2999/istoreos-ipk.git;main\n" feeds.conf.default        
+        #sed -i "5isrc-git turboacc https://github.com/chenmozhijin/turboacc.git;luci\n" feeds.conf.default        
+        #sed -i "6isrc-git turboaccpackage https://github.com/chenmozhijin/turboacc.git;package\n" feeds.conf.default        
+        #sed -i "6isrc-git theme https://github.com/sbwml/luci-theme-argon;openwrt-24.10\n" feeds.conf.default        
+        #sed -i "7isrc-git appvlmcsd https://github.com/AutoCONFIG/luci-app-vlmcsd;master\n" feeds.conf.default        
+        sed -i "1isrc-git small https://github.com/kenzok8/small;master\n" feeds.conf.default      
+        sed -i "2isrc-git kenzo https://github.com/kenzok8/openwrt-packages;master\n" feeds.conf.default          
         ./scripts/feeds update -a
         ./scripts/feeds install -a
         
         ## 强制默认编译内核   
-        sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.6/g" target/linux/x86/Makefile
-        sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.6/g" target/linux/x86/Makefile           
+        sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.12/g" target/linux/x86/Makefile
+        sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.12/g" target/linux/x86/Makefile           
         
     - name: Load Custom Configuration
       run: |
