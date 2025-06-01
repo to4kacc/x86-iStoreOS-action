@@ -106,8 +106,9 @@ cp -r feeds/small/dns2socks feeds/packages/net
 cp -r feeds/small/ipt2socks feeds/packages/net
 cp -r feeds/small/microsocks feeds/packages/net
 cp -r feeds/small/geoview feeds/packages/net
-rm -rf feeds/istoreos_ipk/patch/istoreos-24.10
 
+rm -rf feeds/small/luci-app-passwall
+rm -rf feeds/kenzo/{luci-app-argon-config,luci-app-argon}
 
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
