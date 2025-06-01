@@ -109,7 +109,7 @@ cp -r feeds/small/geoview feeds/packages/net
 
 rm -rf feeds/small/luci-app-passwall
 rm -rf feeds/kenzo/{luci-app-argon-config,luci-theme-argon}
-
+rm -rf feeds/luci/applications/{luci-app-tailscale,luci-app-turboacc}
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/third/luci-theme-argon
