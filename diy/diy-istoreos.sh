@@ -107,7 +107,6 @@ cp -r feeds/small/microsocks feeds/packages/net
 cp -r feeds/small/geoview feeds/packages/net
 
 
-
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/third/luci-theme-argon
@@ -161,6 +160,10 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-socat
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
+
+rm -rf feeds/small/ luci-app-OpenClash
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-OpenClash
+git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-OpenClash
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
