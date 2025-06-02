@@ -163,7 +163,9 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-dockerman
 
-
+rm -rf feeds/small/ luci-app-OpenClash
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-OpenClash
+git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-OpenClash
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
 # git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
