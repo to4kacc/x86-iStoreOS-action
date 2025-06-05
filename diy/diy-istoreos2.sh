@@ -61,7 +61,10 @@ rm -rf feeds/third_party/luci-app-LingTiGameAcc
 rm -rf feeds/third_party/luci-app-socat
 rm -rf feeds/istoreos_ipk/op-daed
 rm -rf feeds/istoreos_ipk/patch/istoreos-files
-# rm -rf feeds/istoreos_ipk/vlmcsd
+rm -rf feeds/istoreos_ipk/vlmcsd
+rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-vlmcsd
+rm -rf package/diy/luci-app-ota
+
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
