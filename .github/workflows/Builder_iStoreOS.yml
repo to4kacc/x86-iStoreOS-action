@@ -1,0 +1,224 @@
+name: Builder_iStoreOS
+
+on: 
+  repository_dispatch:
+  workflow_dispatch:
+
+# 定时触发编译
+#  schedule:
+#    - cron: 0 22 * * *
+
+env:
+  REPO_URL: https://github.com/istoreos/istoreos.git
+  REPO_BRANCH: istoreos-24.10
+  FEEDS_CONF: feeds.conf.default
+  CONFIG_FILE: configs/x86_64_iStoreOS.config
+  DIY_P1_SH: diy/diy-istoreos.sh
+  UPLOAD_BIN_DIR: false
+  UPLOAD_FIRMWARE: true
+  UPLOAD_RELEASE: true
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 10240
+        temp-reserve-mb: 100
+        swap-size-mb: 8192
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        docker rmi $(docker images -q)
+        sudo rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android $AGENT_TOOLSDIRECTORY
+        sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
+        sudo -E apt-get -y update
+        sudo -E apt-get -y install $(curl -fsSL https://git.kejizero.online/zhao/files/raw/branch/main/Rely/ubuntu2204)
+        sudo -E systemctl daemon-reload
+        sudo -E apt-get -y autoremove --purge
+        sudo -E apt-get -y clean
+        sudo -E apt-get install -y clang
+        sudo timedatectl set-timezone "$TZ"
+
+    - name: Load Custom Configuration
+      run: |
+        [ -e files ] && mv files $OPENWRT_PATH/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        chmod +x $GITHUB_WORKSPACE/scripts/*.sh
+        chmod +x $DIY_SCRIPT
+        cd $OPENWRT_PATH
+        $GITHUB_WORKSPACE/$DIY_SCRIPT
+        $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
+
+    - name: Compile the firmware
+      id: compile
+      run: |
+        cd openwrt
+        echo -e "$(nproc) thread compile"
+        make -j$(nproc) || make -j1 || make -j1 V=s
+        echo "status=success" >> $GITHUB_OUTPUT
+        grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
+        [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
+        echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
+
+    - name: Check space usage
+      if: (!cancelled())
+      run: df -hT
+
+    - name: Upload bin directory
+      uses: actions/upload-artifact@main
+      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+      with:
+        name: OpenWrt_bin${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        path: openwrt/bin
+
+    - name: Organize files
+      id: organize
+      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      run: |
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
+        find . ! -name '*.bin' ! -name '*.img.gz' ! -name '*iStoreOS'  -type f -delete 
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
+
+    - name: Upload Firmware To Artifact
+      if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE != 'true'
+      uses: actions/upload-artifact@main
+      with:
+        name: ${{ env.SOURCE_REPO }}-firmware-${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}-${{ env.FILE_DATE }}
+        path: ${{ env.FIRMWARE_PATH }}
+
+    - name: Upload Firmware To Release
+      if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
+      uses: ncipollo/release-action@v1
+      with:
+        name: R${{ env.DATE }} for ${{ env.FIRMWARE_TAG }}
+        allowUpdates: true
+        tag: ${{ env.FIRMWARE_TAG }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: ${{ env.FIRMWARE_PATH }}/*
+        body: |
+          ### 📒 固件信息
+          - 💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
+          - ⚽ 固件源码: ${{ env.REPO_URL }}
+          - 🌳 源码分支: ${{ env.REPO_BRANCH }}
+          - 🚀 内核版本: ${{ env.KERNEL }}
+          - 🌐 默认地址: 192.168.2.1
+          - 🔑 默认密码: 空
+          ### 🧊 固件版本
+          - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
+          - ${{ env.COMMIT_AUTHOR }}
+          - ${{ env.COMMIT_DATE }}
+          - ${{ env.COMMIT_MESSAGE }}
+          - ${{ env.COMMIT_HASH }}
+
+    - name: Upload firmware to release
+      uses: softprops/action-gh-release@master
+      if: steps.tag.outputs.status == 'success' && !cancelled()
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      with:
+        tag_name: ${{ steps.tag.outputs.release_tag }}
+        body_path: release.txt
+        files: ${{ env.FIRMWARE }}/*
+
+    - name: Delete workflow runs
+      uses: Mattraks/delete-workflow-runs@main
+      with:
+        retain_days: 5
+        keep_minimum_runs: 10
+      env:
+       GITHUB_TOKEN: ${{ secrets.GH_PAT }}  
+
+    - name: Remove old Releases
+      uses: dev-drprasad/delete-older-releases@master
+      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      with:
+        keep_latest: 10
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+
+        
+  generate-ota-json:
+    name: Generate OTA JSON
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get latest release info
+        id: get_release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const latest = await github.rest.repos.getLatestRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+
+            const asset = latest.data.assets.find(a => 
+              a.name === 'istoreos-x86-64-generic-squashfs-combined-efi.img.gz');
+
+            if (!asset) {
+              core.setFailed("Target firmware not found in the latest release.");
+              return;
+            }
+
+            const crypto = require('crypto');
+            const response = await fetch(asset.browser_download_url);
+            const buffer = await response.arrayBuffer();
+            const sha256 = crypto.createHash('sha256').update(Buffer.from(buffer)).digest('hex');
+
+            const workflowRun = await github.rest.actions.getWorkflowRun({
+             owner: context.repo.owner,
+             repo: context.repo.repo,
+             run_id: process.env.GITHUB_RUN_ID,
+            });
+
+            const workflowStartTime = workflowRun.data.run_started_at;
+            const buildDate = Math.floor(new Date(workflowStartTime).getTime() / 1000);
+
+            const json = {
+              "x86_64": [
+                {
+                  "build_date": String(buildDate),
+                  "sha256sum": sha256,
+                  "url": asset.browser_download_url
+                }
+              ]
+            };
+
+            const fs = require('fs');
+            fs.mkdirSync('tmp-api', { recursive: true });
+            fs.writeFileSync('tmp-api/fw.json', JSON.stringify(json, null, 4));
+
+      - name: Checkout api branch
+        run: |
+          git fetch origin api:api
+          git checkout api
+          cp tmp-api/fw.json .
+          git config user.name "actions-user"
+          git config user.email "actions@github.com"
+          git add fw.json
+          git commit -m "Update fw.json @ $(date +'%Y-%m-%d %H:%M:%S')" || echo "No changes to commit"
+          git push origin api
