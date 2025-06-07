@@ -1,4 +1,4 @@
-name: Generate OTA JSON
+name: 生成ota.json到分支api
 
 on:
   workflow_dispatch:
