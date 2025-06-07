@@ -1,4 +1,4 @@
-name: Builser-istoreos-24.10.0-X86_64
+name: Builser-qihoo_360t7-istoreos-24.10
 
 on: 
   repository_dispatch:
