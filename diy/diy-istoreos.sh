@@ -162,7 +162,7 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-socat
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
-
+git_sparse_clone main https://github.com/Jaykwok2999/istoreos-ota luci-app-ota
 rm -rf feeds/small/ luci-app-OpenClash
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-OpenClash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-OpenClash
