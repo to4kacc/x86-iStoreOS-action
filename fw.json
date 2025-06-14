@@ -1,7 +1,7 @@
 {
     "x86_64": [
         {
-            "build_date": "1749922486",
+            "build_date": "1749922932",
             "sha256sum": "54483c3bc418500bc0356e894b75d0e2dc0dbb96164ea16129c9aff8b7c558bc",
             "url": "https://github.com/Jaykwok2999/istoreos-actions/releases/download/20250614/istoreos-x86-64-generic-squashfs-combined-efi.img.gz"
         }
