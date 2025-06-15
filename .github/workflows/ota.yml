@@ -27,7 +27,7 @@ jobs:
 
             const assets = release.data.assets;
             const target = assets.find(asset =>
-              asset.name === 'wikjxwrt-x86-64-generic-ext4-combined-efi.img.gz'
+              asset.name === 'istoreos-x86-64-generic-squashfs-combined-efi.img.gz'
             );
 
             if (!target) {
