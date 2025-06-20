@@ -1,9 +1,9 @@
 {
     "x86_64": [
         {
-            "build_date": "1750342258",
-            "sha256sum": "3151a51e012441ab381dee12a774b7d9219950f398f964e20e93aa531036e8d9",
-            "url": "https://github.com/Jaykwok2999/istoreos-actions/releases/download/20250619/istoreos-x86-64-generic-squashfs-combined-efi.img.gz"
+            "build_date": "1750426105",
+            "sha256sum": "a250ff985dd72f5f0e3c6469c5e25e7f1bd6a8c44008ac2fc09f2c79fafb864f",
+            "url": "https://github.com/Jaykwok2999/istoreos-actions/releases/download/20250620/istoreos-x86-64-generic-squashfs-combined-efi.img.gz"
         }
     ]
 }
