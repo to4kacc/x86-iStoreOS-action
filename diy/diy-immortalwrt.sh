@@ -8,16 +8,14 @@ wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main
 mkdir -p files/etc
 wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/opkg.conf > files/etc/opkg.conf
 mkdir -p files/etc/opkg
-#wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/x86/distfeeds.conf > files/etc/opkg/distfeeds.conf
-wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/x86/distfeeds.conf > files/etc/opkg/distfeeds.conf-86
+wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/x86/distfeeds.conf > files/etc/opkg/distfeeds.conf
 
 mkdir -p files/root
 wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/.profile > files/root/.profile
-
 #修改默认IP地址
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.1.1/g" ./package/base-files/files/bin/config_generate
 #修改默认主机名
-sed -i "s/hostname='.*'/hostname='Immortalwrt'/g" ./package/base-files/files/bin/config_generate
+sed -i "s/hostname='.*'/hostname='immortalwrt'/g" ./package/base-files/files/bin/config_generate
 #修改默认时区
 sed -i "s/timezone='.*'/timezone='CST-8'/g" ./package/base-files/files/bin/config_generate
 sed -i "/timezone='.*'/a\\\t\t\set system.@system[-1].zonename='Asia/Shanghai'" ./package/base-files/files/bin/config_generate
@@ -36,6 +34,9 @@ sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/shar
 sed -i '/set luci.main.mediaurlbase=\/luci-static\/bootstrap/d' feeds/luci/themes/luci-theme-bootstrap/root/etc/uci-defaults/30_luci-theme-bootstrap
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci-nginx/Makefile
+
+# default-settings
+#git clone --depth=1 -b openwrt-24.10 https://github.com/Jaykwok2999/default-settings package/default-settings
 
 # mwan3
 sed -i 's/MultiWAN 管理器/负载均衡/g' feeds/luci/applications/luci-app-mwan3/po/zh_Hans/mwan3.po
@@ -56,10 +57,9 @@ sed -i 's/services/nas/g' feeds/istoreos_ipk/op-fileBrowser/luci-app-filebrowser
 
 # 修改socat为端口转发
 sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/third_party/luci-app-socat/po/zh-cn/socat.po
-echo -e "\nmsgid \"NAS\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
-echo -e "msgstr \"存储\"" >> feeds/luci/modules/luci-base/po/zh_Hans/base.po
+
 ##加入作者信息
-sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='ImmortalWrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
+sed -i "s/DISTRIB_DESCRIPTION='*.*'/DISTRIB_DESCRIPTION='immortalwrt-$(date +%Y%m%d)'/g"  package/base-files/files/etc/openwrt_release
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By sos07'/g" package/base-files/files/etc/openwrt_release
 
 # 移除要替换的包
@@ -85,7 +85,9 @@ rm -rf feeds/istoreos_ipk/chinadns-ng
 rm -rf feeds/istoreos_ipk/microsocks
 rm -rf feeds/istoreos_ipk/dns2socks
 rm -rf feeds/istoreos_ipk/ipt2socks
-rm -rf feeds/istoreos_ipk/patch/istoreos-24.10
+rm -rf package/feeds/istoreos_ipk/vlmcsd
+rm -rf feeds/istoreos_ipk/vlmcsd
+rm -rf feeds/istoreos_ipk/vlmcsd
 rm -rf feeds/packages/net/xray-core
 rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/net/v2ray-geodata
@@ -106,7 +108,12 @@ cp -r feeds/small/ipt2socks feeds/packages/net
 cp -r feeds/small/microsocks feeds/packages/net
 cp -r feeds/small/geoview feeds/packages/net
 
+rm -rf feeds/istoreos_ipk/patch/istoreos-files
+git clone https://github.com/sos801107/istoreos-files -b main feeds/packages/istoreos-files
 
+rm -rf feeds/small/luci-app-passwall
+rm -rf feeds/kenzo/{luci-app-argon-config,luci-theme-argon}
+rm -rf feeds/luci/applications/{luci-app-tailscale,luci-app-turboacc}
 # istoreos-theme
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/third/luci-theme-argon
@@ -155,64 +162,38 @@ function merge_package() {
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-socat
+git_sparse_clone luci https://github.com/chenmozhijin/turboacc luci-app-turboacc
+
+#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
+#git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
+#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-tailscale
+#git_sparse_clone main https://github.com/kiddin9/kwrt-packages tailscale
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
-git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-dockerman
 
-rm -rf feeds/small/ luci-app-OpenClash
+rm -rf feeds/small/luci-app-OpenClash
 rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-OpenClash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-OpenClash
+
+
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
-# git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
-# git clone https://git.kejizero.online/zhao/packages_lang_golang -b 23.x feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
-
-
+git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
 git clone https://git.kejizero.online/zhao/luci-app-upnp feeds/luci/applications/luci-app-upnp -b master
 
-# unzip
-rm -rf feeds/packages/utils/unzip
-git clone https://github.com/sbwml/feeds_packages_utils_unzip feeds/packages/utils/unzip
-
-# frpc名称
-sed -i 's,发送,Transmission,g' feeds/luci/applications/luci-app-transmission/po/zh_Hans/transmission.po
-sed -i 's,frp 服务器,frps 服务器,g' feeds/luci/applications/luci-app-frps/po/zh_Hans/frps.po
-sed -i 's,frp 客户端,frpc 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
-
 # 必要的补丁
 pushd feeds/luci
    curl -s https://raw.githubusercontent.com/oppen321/path/refs/heads/main/Firewall/0001-luci-mod-status-firewall-disable-legacy-firewall-rul.patch | patch -p1
 popd
+
 pushd
    curl -sSL https://raw.githubusercontent.com/Jaykwok2999/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 popd
-# NTP
-sed -i 's/0.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
-sed -i 's/1.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
-sed -i 's/2.openwrt.pool.ntp.org/time1.cloud.tencent.com/g' package/base-files/files/bin/config_generate
-sed -i 's/3.openwrt.pool.ntp.org/time2.cloud.tencent.com/g' package/base-files/files/bin/config_generate
 
-# 更改 banner
-#rm -rf package/base-files/files/etc/banner
-#cp -af feeds/istoreos_ipk/patch/diy/banner package/base-files/files/etc/
-
-# tailscale
-rm -rf feeds/packages/net/tailscale
-# rm -rf feeds/istoreos_ipk/tailscale/tailscale
-# cp -af feeds/istoreos_ipk/tailscale/tailscale  feeds/packages/net/
-sed -i '/\/etc\/init\.d\/tailscale/d;/\/etc\/config\/tailscale/d;' feeds/packages/net/tailscale/Makefile
-
-# 增加驱动补丁
-# cp -af feeds/istoreos_ipk/patch/diy/patches-6.6/993-bnx2x_warpcore_8727_2_5g_sgmii_txfault.patch target/linux/x86/patches-6.6/
-cp -af feeds/istoreos_ipk/patch/diy/patches-6.6/996-intel-igc-i225-i226-disable-eee.patch target/linux/x86/patches-6.6/
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
