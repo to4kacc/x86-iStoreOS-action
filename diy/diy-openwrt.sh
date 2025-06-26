@@ -164,10 +164,12 @@ git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-ap
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall
 git_sparse_clone luci https://github.com/chenmozhijin/turboacc luci-app-turboacc
 
-#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
-#git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
-#git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-tailscale
-#git_sparse_clone main https://github.com/kiddin9/kwrt-packages tailscale
+rm -rf feeds/kenzo/luci-app-dockerman
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-dockerman
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-tailscale
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages tailscale
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
 
