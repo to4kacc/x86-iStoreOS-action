@@ -12,7 +12,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt.git
-  REPO_BRANCH: main
+  REPO_BRANCH: openwrt-24.10
   CONFIG_FILE: configs/x86_64-openwrt.config
   DIY_SCRIPT: diy/diy-openwrt.sh
   CLASH_KERNEL: amd64
@@ -119,8 +119,7 @@ jobs:
         ## 强制默认编译内核   
         #sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.12/g" target/linux/x86/Makefile
         #sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.12/g" target/linux/x86/Makefile           
-        sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.12/g" target/linux/x86/Makefile
-        sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.12/g" target/linux/x86/Makefile    
+ 
         
     - name: Load Custom Configuration
       run: |
