@@ -166,6 +166,7 @@ git_sparse_clone luci https://github.com/chenmozhijin/turboacc luci-app-turboacc
 
 rm -rf feeds/kenzo/luci-app-dockerman
 rm -rf feeds/small/v2ray-geodata
+rm -rf feeds/packages/net/v2ray-geodata
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-dockerman
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages mosdns
