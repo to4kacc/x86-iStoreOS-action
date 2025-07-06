@@ -157,7 +157,7 @@ function merge_package() {
     done
     cd "$rootdir"
 }
-
+rm -rf package/diy/luci-app-ota
 git_sparse_clone main https://github.com/sos801107/istoreos-ota luci-app-ota
 git_sparse_clone main https://github.com/sos801107/github-ota fw_download_tool
 
