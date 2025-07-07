@@ -157,9 +157,9 @@ function merge_package() {
     done
     cd "$rootdir"
 }
-#rm -rf package/diy/luci-app-ota
-#git_sparse_clone main https://github.com/sos801107/istoreos-ota luci-app-ota
-#git_sparse_clone main https://github.com/sos801107/github-ota fw_download_tool
+rm -rf package/diy/luci-app-ota
+git_sparse_clone main https://github.com/sos801107/istoreos-ota luci-app-ota
+git_sparse_clone main https://github.com/sos801107/istoreos-ota fw_download_tool
 
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
