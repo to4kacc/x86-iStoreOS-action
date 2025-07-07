@@ -179,9 +179,9 @@ jobs:
           📂 固件源码: ${{ env.REPO_URL }}
           🌳 源码分支: ${{ env.REPO_BRANCH }}
           🚀 内核版本: ${{ env.KERNEL }}
-          🌐 默认地址: 192.168.2.1
+          🌐 默认地址: 192.168.1.1
           👤 用户名: root
-          🔒 默认密码: password
+          🔒 默认密码: 空
 
   generate-ota-json:
     name: Generate OTA JSON
