@@ -1,9 +1,9 @@
 {
     "x86_64": [
         {
-            "build_date": "1751938513",
-            "sha256sum": "78b7ae67dfb9481256cb0e90fa29bacf48ea18993450ff1161a51dfacfdc4b12",
-            "url": "https://github.com/sos801107/iStoreOS/releases/download/20250708/openwrt-x86-64-generic-squashfs-combined-efi.img.gz"
+            "build_date": "1751950411",
+            "sha256sum": "2f8d539e6ca179a26918c6b98ecb56c0505fa1cf0e541991e0530fa77245a094",
+            "url": "https://github.com/sos801107/iStoreOS/releases/download/OpenWrt/openwrt-x86-64-generic-squashfs-combined-efi.img.gz"
         }
     ]
 }
