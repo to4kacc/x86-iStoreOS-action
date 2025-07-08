@@ -108,7 +108,11 @@ jobs:
         sed -i "8isrc-git appota https://github.com/sos801107/istoreos-ota;lede\n" feeds.conf.default          
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-
+        ## 强制默认编译内核   
+        #sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.12/g" target/linux/x86/Makefile
+        #sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.12/g" target/linux/x86/Makefile           
+        sed -i "s/KERNEL_PATCHVER:=*.*/KERNEL_PATCHVER:=6.12/g" target/linux/x86/Makefile
+        sed -i "s/KERNEL_TESTING_PATCHVER:=*.*/KERNEL_TESTING_PATCHVER:=6.12/g" target/linux/x86/Makefile    
     - name: 加载自定义配置
       run: |
         [ -e files ] && mv files $OPENWRT_PATH/files
