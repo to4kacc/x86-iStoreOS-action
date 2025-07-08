@@ -1,19 +1,55 @@
 # iStore OS 固件 | 
 
 [![iStore使用文档](https://img.shields.io/badge/使用文档-iStore%20OS-brightgreen?style=flat-square)](https://doc.linkease.com/zh/guide/istoreos) [![最新固件下载](https://img.shields.io/github/v/release/draco-china/istoreos-rk35xx-actions?style=flat-square&label=最新固件下载)](../../releases/latest)
-[![Workflow Status](https://github.com/Jaykwok2999/istoreos-actions/actions/workflows/Builser-iStoreOS-X86_64.yml/badge.svg)](https://github.com/Jaykwok2999/istoreos-actions/actions/workflows/Builser-iStoreOS-X86_64.yml)
-[![Workflow Status](https://github.com/Jaykwok2999/istoreos-actions/actions/workflows/Builser-OpenWrt-X86_64.yml/badge.svg)](https://github.com/Jaykwok2999/istoreos-actions/actions/workflows/Builser-OpenWrt-X86_64.yml)
+[![Workflow Status](https://github.com/Jaykwok2999/istoreos-actions/actions/workflows/Builser-istoreos-24.10-X86_64.yml/badge.svg)](https://github.com/Jaykwok2999/istoreos-actions/actions/workflows/Builser-istoreos-24.10-X86_64.yml)
+
+## 基本状况
+| 系统支持                      | 状态 |
+|:----------------------------:|:----:|
+| 支持OTA在线升级                | ✅  |
+
+## 界面
+
+![screenshots](./diy/iStoreOS1.png)
+
+![screenshots](./diy/iStoreOS2.png)
+
+![screenshots](./diy/iStoreOS3.png)
+
+
+| 内置插件                 | 状态 | 内置插件         | 状态 |
+|:------------------------:|:----:|:----------------:|:----:|
+| PassWall                 | ✅   | iStoreOS界面     | ✅   |
+| HomeProxy                | ✅   | TTY 终端         | ✅   |
+| pushbot                  | ✅   |  Docker          | ✅   |
+| openclash                | ✅   | DiskMan 磁盘管理 | ✅   |
+| MosDNS                   | ✅   | Socat端口转发           | ✅   |
+| 动态 DNS                 | ✅   | UPnP            | ✅   |
+| DDNS-GO                 | ✅   | mwan3负载均匀            | ✅   |
+| smartdns                | ✅   | turboacc网络加速         | ✅   |
+| FRP 客户端               | ✅   | taskplan任务设置         | ✅   |
+| msd_lite组播转换         | ✅   |  tailscale       | ✅   |
+| 网络共享（Samba）        | ✅   |  iStore商店      | ✅   |
+| omcproxy组播代理         | ✅   |  onliner在线用户    | ✅   |
+| udpxy组播转换            | ✅   |               | ⏳   |
+| Alist 文件列表           | ✅   |                | ⏳   |
+| filebrowser              | ✅   |               | ⏳   |
+
+✅ 可用
+
+❌ 不可用
+
+⏳ 计划中
+
 
 ## 默认配置
 
-- IP: `http://192.168.1.1`
+- IP: `http://192.168.2.1` or `http://iStoreOS.lan/`
 - 用户名: `root`
-- 密码: `空` or `password`
+- 密码: `password`
 - 如果设备只有一个网口，则此网口就是 `LAN` , 如果大于一个网口, 默认第一个网口是 `WAN` 口, 其它都是 `LAN`
 - 如果要修改 `LAN` 口 `IP` , 首页有个内网设置，或者用命令 `quickstart` 修改
-- 北京时间每天 `0:00` 定时编译, `Release` 中只保留最新版本
-- 历史版本在 `Actions` 中选择一个已经运行完成且成功的 `workflow` 在页面底部可以看到 `Artifacts`, `Artifacts` 需要登录 Github 才能下载
-
+- 北京时间每天 `0:00` 定时编译, `Release` 中最新版本支持OTA每日更新升级
 ## 支持架构
 
 ### x86 架构
