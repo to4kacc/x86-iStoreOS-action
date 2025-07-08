@@ -1,9 +1,9 @@
 {
     "x86_64": [
         {
-            "build_date": "1751905562",
-            "sha256sum": "60b03a0bf62bc097df9b0a0bbfdf9975477d9042eee144b092e74390eaa24891",
-            "url": "https://github.com/sos801107/iStoreOS/releases/download/20250708/istoreos-x86-64-generic-squashfs-combined-efi.img.gz"
+            "build_date": "1751938503",
+            "sha256sum": "394759c3342c71c67b6963d26a864d0cbd668f3b75414346636cf291a9851c79",
+            "url": "https://github.com/sos801107/iStoreOS/releases/download/20250708/immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz"
         }
     ]
 }
