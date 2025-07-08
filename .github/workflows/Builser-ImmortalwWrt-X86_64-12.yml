@@ -208,7 +208,7 @@ jobs:
             });
 
             const asset = latest.data.assets.find(a => 
-              a.name === 'immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz');
+              a.name === 'istoreos-x86-64-generic-squashfs-combined-efi.img.gz');
 
             if (!asset) {
               core.setFailed("Target firmware not found in the latest release.");
@@ -240,16 +240,16 @@ jobs:
             };
 
             const fs = require('fs');
-            fs.mkdirSync('tmp-iw-ota', { recursive: true });
-            fs.writeFileSync('tmp-iw-ota/fw.json', JSON.stringify(json, null, 4));
+            fs.mkdirSync('tmp-api', { recursive: true });
+            fs.writeFileSync('tmp-api/iwfw.json', JSON.stringify(json, null, 4));
 
-      - name: Checkout iw-ota branch
+      - name: Checkout api branch
         run: |
-          git fetch origin iw-ota:iw-ota
-          git checkout iw-ota
-          cp tmp-iw-ota/fw.json .
+          git fetch origin api:api
+          git checkout api
+          cp tmp-api/iwfw.json .
           git config user.name "actions-user"
           git config user.email "actions@github.com"
-          git add fw.json
-          git commit -m "Update fw.json @ $(date +'%Y-%m-%d %H:%M:%S')')" || echo "No changes to commit"
-          git push origin iw-ota
+          git add iwfw.json
+          git commit -m "Update iwfw.json @ $(date +'%Y-%m-%d %H:%M:%S')')" || echo "No changes to commit"
+          git push origin api
