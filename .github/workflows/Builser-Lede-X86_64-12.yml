@@ -153,13 +153,12 @@ jobs:
 
     - name: 整理文件
       if: steps.compile.outputs.status == 'success'
-      run: |
-        #mv openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined-efi.img.gz openwrt/bin/targets/x86/64/LEDE-x86-64-generic-squashfs-combined-efi.img.gz 
-        #mv openwrt/bin/targets/x86/64/openwrt-x86-64-generic-squashfs-combined.img.gz LEDE-x86-64-generic-squashfs-combined.img.gz 
+      run: |        
         cd $OPENWRT_PATH/bin/targets/*/*
-        ####find . -type f -name "*openwrt*" -exec sh -c 'mv "$1" "${1/openwrt/LEDE}"' _ {} \;
-        find . -type f -name "*openwrt*" -exec rename 's/openwrt/LEDE/' {} \;
-
+        
+        #改名称
+        find . -type f -name "*openwrt*" -exec rename 's/openwrt/lede/' {} \;
+        
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
         mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
@@ -220,7 +219,7 @@ jobs:
             });
 
             const asset = latest.data.assets.find(a => 
-              a.name === ('LEDE-x86-64-generic-squashfs-combined-efi.img.gz');
+              a.name === 'lede-x86-64-generic-squashfs-combined-efi.img.gz');
 
             if (!asset) {
               core.setFailed("Target firmware not found in the latest release.");
