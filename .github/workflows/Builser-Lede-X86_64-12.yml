@@ -48,7 +48,7 @@ jobs:
       run: |
         sudo timedatectl set-timezone "Asia/Shanghai"
         sudo -E apt-get update -y
-        sudo -E apt-get install -y ack antlr3 asciidoc autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev libfuse-dev python3-setuptools g++ file clang nano genisoimage
+        sudo -E apt-get install -y ack antlr3 asciidoc rename autoconf automake autopoint binutils bison build-essential bzip2 ccache cmake cpio curl device-tree-compiler fastjar flex gawk gettext gcc-multilib g++-multilib git gperf haveged help2man intltool libc6-dev-i386 libelf-dev libglib2.0-dev libgmp3-dev libltdl-dev libmpc-dev libmpfr-dev libncurses5-dev libncursesw5-dev libreadline-dev libssl-dev libtool lrzsz mkisofs msmtp nano ninja-build p7zip p7zip-full patch pkgconf python3 python3-pyelftools libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip vim wget xmlto xxd zlib1g-dev libfuse-dev python3-setuptools g++ file clang nano genisoimage
         pip install aligo
         sudo -E apt-get clean
         git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
@@ -155,14 +155,15 @@ jobs:
       if: steps.compile.outputs.status == 'success'
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
-        find . -type f -name "*openwrt*" -exec sh -c 'mv "$1" "${1/openwrt/LEDE}"' _ {} \;
+        ####find . -type f -name "*openwrt*" -exec sh -c 'mv "$1" "${1/openwrt/LEDE}"' _ {} \;
+        find . -type f -name "*openwrt*" -exec rename 's/openwrt/LEDE/' {} \;
+
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
         mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
         tar -zcf Packages.tar.gz packages
         # rm -rf packages feeds.buildinfo version.buildinfo
         
-        ####find . -type f -name "*openwrt*" -exec rename 's/openwrt/LEDE/' {} \;
         
         echo "KERNEL=$(cat *.manifest | grep ^kernel | cut -d- -f2 | tr -d ' ')" >> $GITHUB_ENV
         echo "FIRMWARE_PATH=$PWD" >> $GITHUB_ENV
