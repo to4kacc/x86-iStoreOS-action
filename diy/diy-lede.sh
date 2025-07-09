@@ -159,9 +159,9 @@ function merge_package() {
     done
     cd "$rootdir"
 }
-rm -rf package/diy/luci-app-ota
-git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
-git_sparse_clone lede https://github.com/sos801107/istoreos-ota fw_download_tool
+#rm -rf package/diy/luci-app-ota
+#git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
+#git_sparse_clone lede https://github.com/sos801107/istoreos-ota fw_download_tool
 
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
@@ -178,10 +178,10 @@ rm -rf feeds/small/luci-app-openclash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
 # 更改时间戳
-rm -rf scripts/get_source_date_epoch.sh
-mkdir -p scripts
-wget -qO- https://raw.githubusercontent.com/Jaykwok2999/istoreos-ipk/refs/heads/main/patch/get_source_date_epoch.sh > scripts/get_source_date_epoch.sh
-chmod +x scripts/get_source_date_epoch.sh
+#rm -rf scripts/get_source_date_epoch.sh
+#mkdir -p scripts
+#wget -qO- https://raw.githubusercontent.com/Jaykwok2999/istoreos-ipk/refs/heads/main/patch/get_source_date_epoch.sh > scripts/get_source_date_epoch.sh
+#chmod +x scripts/get_source_date_epoch.sh
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
