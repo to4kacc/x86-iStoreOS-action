@@ -1,8 +1,8 @@
 {
     "x86_64": [
         {
-            "build_date": "1752188115",
-            "sha256sum": "a99dfcdaca336860b2ccdb8f3bf758f03945e0a14bdb6321fea3b16920538648",
+            "build_date": "1752344828",
+            "sha256sum": "9d5a97d05c23f6c0f71feac3ad751177b78c80d2f2c0b4e69ed2770be96a4995",
             "url": "https://github.com/sos801107/iStoreOS/releases/download/ImmortalwWrt/immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz"
         }
     ]
