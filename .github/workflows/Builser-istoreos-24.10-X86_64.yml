@@ -210,7 +210,7 @@ jobs:
             });
 
             const asset = latest.data.assets.find(a => 
-              a.name === 'istoreos-x86-64-generic-squashfs-combined-efi.img.gz');
+              a.name === 'iStoreOS-24.10-X86_64-efi*.img.gz');
 
             if (!asset) {
               core.setFailed("Target firmware not found in the latest release.");
