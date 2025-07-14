@@ -4,11 +4,12 @@ name: Update OTA JSON
 on:
   #自动编译：当Auto-Clean运行完成后
   workflow_run:
-    workflows: ["Auto-Clean1"]
+    workflows: ["Auto-Clean"]
     types:
       - completed
   #手动编译
   workflow_dispatch:
+
   
 jobs:
   generate-ota-json:
