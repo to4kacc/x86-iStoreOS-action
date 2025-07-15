@@ -151,6 +151,8 @@ jobs:
       if: steps.compile.outputs.status == 'success'
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
+        mv immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz immortalwrt-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined-efi.img.gz
+        mv immortalwrt-x86-64-generic-squashfs-combined.img.gz immortalwrt-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined.img.gz        
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
         mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
@@ -174,7 +176,7 @@ jobs:
         allowUpdates: true
         tag: ImmortalwWrt
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/*
+        artifacts: ${{ env.FIRMWARE_PATH }}/immortalwrt-24.10.2*.img.gz
         body: |
           ### 📒 固件信息
           💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
@@ -209,7 +211,7 @@ jobs:
             });
 
             const asset = latest.data.assets.find(a => 
-              a.name === 'immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz');
+              a.name.includes('immortalwrt-24.10.2') && a.name.endsWith('efi.img.gz'));
 
             if (!asset) {
               core.setFailed("Target firmware not found in the latest release.");
