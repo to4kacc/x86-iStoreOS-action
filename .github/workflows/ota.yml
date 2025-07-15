@@ -28,7 +28,7 @@ jobs:
             });
 
             const asset = latest.data.assets.find(a => 
-              a.name === 'iStoreOS-24.10-X86_64-efi-2025.07.15-0518.img.gz');
+              a.name.includes('iStoreOS-24.10-X86_64-efi') && a.name.endsWith('.img.gz'));
 
             if (!asset) {
               core.setFailed("Target firmware not found in the latest release.");
