@@ -1,1 +1,9 @@
-
+{
+    "x86_64": [
+        {
+            "build_date": "1752538298",
+            "sha256sum": "c548b2d7bdd6a76056d5c3fdc0ec72776ac19b3bab5f91d0f80b57a7713dc54f",
+            "url": "https://github.com/sos801107/iStoreOS/releases/download/iStoreOS/iStoreOS-24.10-X86_64-efi-2025.07.15-0518.img.gz"
+        }
+    ]
+}
