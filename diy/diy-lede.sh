@@ -188,8 +188,9 @@ chmod +x scripts/get_source_date_epoch.sh
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
-#git clone https://github.com/sos801107/luci-app-ota feeds/packages/luci-app-ota -b main
-git clone --depth=1 -b main https://github.com/sos801107/luci-app-ota packages/luci-app-ota
+# luci-app-ota
+git clone https://github.com/sos801107/luci-app-ota -b main feeds/packages/luci-app-ota
+
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
