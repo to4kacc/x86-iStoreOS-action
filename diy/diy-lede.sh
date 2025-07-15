@@ -160,7 +160,7 @@ function merge_package() {
     cd "$rootdir"
 }
 rm -rf package/diy/luci-app-ota
-git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
+#git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
 git_sparse_clone lede https://github.com/sos801107/istoreos-ota fw_download_tool
 
 git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
@@ -177,6 +177,7 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
 rm -rf feeds/small/luci-app-openclash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
+
 # 更改时间戳
 rm -rf scripts/get_source_date_epoch.sh
 mkdir -p scripts
@@ -186,6 +187,8 @@ chmod +x scripts/get_source_date_epoch.sh
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+
+git clone https://github.com/sos801107/luci-app-ota feeds/packages/luci-app-ota -b main
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
