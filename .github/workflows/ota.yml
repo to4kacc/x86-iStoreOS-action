@@ -26,9 +26,9 @@ jobs:
             });
 
             const assets = release.data.assets;
-            const asset = latest.data.assets.find(a => 
-                a.name.includes('iStoreOS-24.10-X86_64-efi')
-                );
+            const asset = latest.data.assets.find(a => {
+                return a.name.includes('iStoreOS-24.10-X86_64-efi');
+                });
 
             if (!target) {
               throw new Error("Target firmware not found in the latest release.");
