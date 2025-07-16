@@ -184,7 +184,7 @@ jobs:
       with:
         name: LEDE-24.10.2-X86_64 for ${{ env.DATE }}
         allowUpdates: true
-        tag: Lede-${{ env.FIRMWARE_TAG }}
+        tag: Lede
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/Lede-24.10.2*.img.gz
         body: |
