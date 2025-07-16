@@ -20,6 +20,8 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
+  FIRMWARE_TAG: $(date +"%Y%m%d%H")
+
   TZ: Asia/Shanghai
 
 jobs:
@@ -71,7 +73,7 @@ jobs:
         cd openwrt
         echo "DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
         #echo $(date +"%Y%m%d%H%M") > version
-        echo $(date +"%Y%m%d") > version
+        echo ${{ env.FIRMWARE_TAG }} > version
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
 
     - name: 生成变量
@@ -151,8 +153,8 @@ jobs:
       if: steps.compile.outputs.status == 'success'
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
-        mv immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz immortalwrt-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined-efi.img.gz
-        mv immortalwrt-x86-64-generic-squashfs-combined.img.gz immortalwrt-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined.img.gz        
+        mv immortalwrt-x86-64-generic-squashfs-combined-efi.img.gz immortalwrt-24.10.2-${{ env.FIRMWARE_TAG }}-x86-64-squashfs-combined-efi.img.gz
+        mv immortalwrt-x86-64-generic-squashfs-combined.img.gz immortalwrt-24.10.2-${{ env.FIRMWARE_TAG }}-x86-64-squashfs-combined.img.gz        
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
         mv -f $OPENWRT_PATH/bin/packages/*/*/*.ipk packages
@@ -172,9 +174,9 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
-        name: ImmortalwWrt-24.10-X86_64 for ${{ env.DATE }}
+        name: ImmortalwWrt-24.10-X86_64 for ${{ env.FIRMWARE_TAG }}
         allowUpdates: true
-        tag: ImmortalwWrt
+        tag: ImmortalwWrt-${{ env.FIRMWARE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/immortalwrt-24.10.2*.img.gz
         body: |
