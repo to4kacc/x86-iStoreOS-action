@@ -174,7 +174,7 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
-        name: ImmortalwWrt-24.10-X86_64 for ${{ env.FIRMWARE_TAG }}
+        name: ImmortalwWrt-24.10-X86_64 for ${{ env.DATE }}
         allowUpdates: true
         tag: ImmortalwWrt-${{ env.FIRMWARE_TAG }}
         token: ${{ secrets.GITHUB_TOKEN }}
