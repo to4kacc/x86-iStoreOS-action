@@ -20,8 +20,6 @@ env:
   CACHE_TOOLCHAIN: true
   UPLOAD_BIN_DIR: false
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: $(date +"%Y%m%d%H")
-
   TZ: Asia/Shanghai
 
 jobs:
@@ -72,8 +70,7 @@ jobs:
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
         echo "DATE=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
-        #echo $(date +"%Y%m%d%H%M") > version
-        echo ${{ env.FIRMWARE_TAG }} > version
+        echo $(date +"%Y%m%d%H") > version
         echo "OPENWRT_PATH=$PWD" >> $GITHUB_ENV
 
     - name: 生成变量
@@ -87,7 +84,7 @@ jobs:
         echo "DEVICE_TARGET=$DEVICE_TARGET" >> $GITHUB_ENV
         DEVICE_SUBTARGET=$(cat .config | grep CONFIG_TARGET_SUBTARGET | awk -F '"' '{print $2}')
         echo "DEVICE_SUBTARGET=$DEVICE_SUBTARGET" >> $GITHUB_ENV
-        #echo "FIRMWARE_TAG=$(date +"%Y%m%d")" >> $GITHUB_ENV
+        echo "FIRMWARE_TAG=$(date +"%Y%m%d")" >> $GITHUB_ENV
 
     - name: 缓存工具链
       if: env.CACHE_TOOLCHAIN == 'true'
@@ -154,8 +151,8 @@ jobs:
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
         
-        mv openwrt-x86-64-generic-squashfs-combined-efi.img.gz openwrt-24.10.2-${{ env.FIRMWARE_TAG }}-x86-64-squashfs-combined-efi.img.gz
-        mv openwrt-x86-64-generic-squashfs-combined.img.gz openwrt-24.10.2-${{ env.FIRMWARE_TAG }}-x86-64-squashfs-combined.img.gz
+        mv openwrt-x86-64-generic-squashfs-combined-efi.img.gz openwrt-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined-efi.img.gz
+        mv openwrt-x86-64-generic-squashfs-combined.img.gz openwrt-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined.img.gz
 
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
