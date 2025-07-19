@@ -7,7 +7,7 @@ wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main
 
 mkdir -p files/etc
 wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/opkg.conf > files/etc/opkg.conf
-mkdir -p files/etc/opkg
+#mkdir -p files/etc/opkg
 #wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/x86/distfeeds.conf > files/etc/opkg/distfeeds.conf
 
 mkdir -p files/root
@@ -161,10 +161,12 @@ rm -rf package/diy/luci-app-ota
 git_sparse_clone main https://github.com/sos801107/istoreos-ota luci-app-ota
 git_sparse_clone main https://github.com/sos801107/istoreos-ota fw_download_tool
 
-#git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
-#git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
-git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-theme-argon
-git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-app-argon-config
+git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
+git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
+
+#git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-theme-argon
+#git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-app-argon-config
+
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall
 git_sparse_clone luci https://github.com/chenmozhijin/turboacc luci-app-turboacc
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-mosdns
