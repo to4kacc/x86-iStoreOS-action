@@ -109,6 +109,7 @@ cp -r feeds/small/microsocks feeds/packages/net
 cp -r feeds/small/geoview feeds/packages/net
 
 rm -rf feeds/istoreos_ipk/patch/istoreos-files
+rm -rf packages/istoreos-files
 git clone https://github.com/sos801107/istoreos-files -b main feeds/packages/istoreos-files
 
 rm -rf feeds/small/luci-app-passwall
