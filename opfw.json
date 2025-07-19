@@ -1,9 +1,9 @@
 {
     "x86_64": [
         {
-            "build_date": "1752856464",
-            "sha256sum": "e6edb16bdf4b144a79fd44a773d1878991e39d4a7459da039ef05c9a4dba85dd",
-            "url": "https://github.abskoop.workers.dev/https://github.com/sos801107/iStoreOS/releases/download/OpenWrt/openwrt-24.10.2-2025071903-x86-64-squashfs-combined-efi.img.gz"
+            "build_date": "1752920119",
+            "sha256sum": "1b0bd32c7b19bed3070e820b7b48d8e895588941285f3053e5ae9dd710e33a93",
+            "url": "https://github.abskoop.workers.dev/https://github.com/sos801107/iStoreOS/releases/download/OpenWrt/openwrt-24.10.2-2025071920-x86-64-squashfs-combined-efi.img.gz"
         }
     ]
 }
