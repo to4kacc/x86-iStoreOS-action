@@ -117,7 +117,7 @@ jobs:
                 }
               ]
             };
-            //const fs = require('fs');
+            const fs = require('fs');
             fs.mkdirSync('tmp-api', { recursive: true });
             fs.writeFileSync('tmp-api/fw.json', JSON.stringify(json, null, 4));    
         
