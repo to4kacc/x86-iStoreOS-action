@@ -90,8 +90,8 @@ jobs:
               console.log(`✅ 共处理 ${sortedFirmwares.length} 个有效固件`);
               // 5. 生成元数据
               const metadata = {
-                updated_at: new Date().toISOString(),
-                versions: sortedFirmwares.slice(0, 5),  // 确保最多5个
+                //updated_at: new Date().toISOString(),
+                x86_64: sortedFirmwares.slice(0, 1),  // 确保最多5个
                 count: sortedFirmwares.length
               };
               // 保存文件
