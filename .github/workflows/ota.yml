@@ -17,14 +17,11 @@ jobs:
           fetch-depth: 0
 
       - name: 获取最新发布信息
-        id: fetch-all-releases
+        id: get_release
         uses: actions/github-script@v7
         with:
           script: |
-            const latest = await github.rest.repos.getLatestRelease({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            });
+
             const asset = latest.data.assets.find(a => 
               a.name.toLowerCase().includes('istoreos') && 
               /combined.*efi\.img\.gz$/i.test(a.name)
