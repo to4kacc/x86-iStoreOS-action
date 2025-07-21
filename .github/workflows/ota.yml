@@ -22,8 +22,8 @@ jobs:
         with:
           script: |
             const latest = await github.rest.repos.getLatestRelease({
-              //owner: context.repo.owner,
-              repo: context.repo.repo,
+              owner: context.repo.owner,
+              //repo: context.repo.repo,
             });
             const asset = latest.data.assets.find(a => 
               a.name.toLowerCase().includes('istoreos') && 
