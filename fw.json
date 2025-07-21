@@ -1,9 +1,9 @@
 {
     "x86_64": [
         {
-            "build_date": "1753029032",
-            "sha256sum": "6320fa08ac51697d0a8623af86421e8747c88bbe9fb85ac50c17c03641514c0b",
-            "url": "https://github.com/sos801107/iStoreOS/releases/download/iStoreOS/istoreos-24.10.2-2025072103-x86-64-squashfs-combined-efi.img.gz"
+            "build_date": "1753087989",
+            "sha256sum": "e8d49e3370d153d5e94203d8cf2eaad86228d9ef72dadd8dee6fe353527f6a89",
+            "url": "https://github.com/sos801107/iStoreOS/releases/download/iStoreOS-Rockchip/istoreos-24.10.2-2025072116-easepi_ars4.img.gz"
         }
     ]
 }
