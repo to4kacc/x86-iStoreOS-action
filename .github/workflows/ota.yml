@@ -112,8 +112,8 @@ jobs:
               "x86_64": [
                 {
                   //"build_date": String(buildDate),
-                  "sha256sum": sha256,
-                  "url": proxiedUrl  // 使用带代理的URL
+                  //"sha256sum": sha256,
+                  "url": asset.browser_download_url  // 使用带代理的URL
                 }
               ]
             };
