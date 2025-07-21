@@ -26,13 +26,16 @@ jobs:
               repo: context.repo.repo,
             });
             const asset = latest.data.assets.find(a => 
-              /istoreos-24\.10\.2.*x86[-_]64.*squashfs.*combined.*efi\.img\.gz$/i.test(a.name)
-              );
+              a.name.toLowerCase().includes('istoreos') && 
+              /combined.*efi\.img\.gz$/i.test(a.name)
+            );
 
-              //a.name.includes('istoreos-24.10.2') && a.name.endsWith('x86-64-squashfs-combined-efi.img.gz'));
             if (!asset) {
-              core.setFailed("Target firmware not found in the latest release. ");
-              return;
+              core.setFailed(`
+                Target firmware not found. Expected a file like:
+                iStoreOS-<version>-<arch>-squashfs-combined-efi.img.gz
+                Available files: ${latest.data.assets.map(a => a.name).join(', ')}
+              `);
             }
             const crypto = require('crypto');
             const response = await fetch(asset.browser_download_url);
