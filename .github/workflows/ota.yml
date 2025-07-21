@@ -105,11 +105,7 @@ jobs:
               };
 
 
-            const workflowStartTime = workflowRun.data.run_started_at;
-            const buildDate = Math.floor(new Date(workflowStartTime).getTime() / 1000);
-            // 🔧 在这里添加代理前缀
-            const proxiedUrl = asset.browser_download_url;    
-            //const proxiedUrl = 'https://gh.llkk.cc/' + asset.browser_download_url;    
+
             
             const json = {
               "x86_64": [
@@ -120,7 +116,7 @@ jobs:
                 }
               ]
             };
-            const fs = require('fs');
+            //const fs = require('fs');
             fs.mkdirSync('tmp-api', { recursive: true });
             fs.writeFileSync('tmp-api/fw.json', JSON.stringify(json, null, 4));    
         
