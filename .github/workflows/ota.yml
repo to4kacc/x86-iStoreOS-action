@@ -80,7 +80,7 @@ jobs:
               const allFirmwares = [];
               for (const release of releases) {
                 const validAssets = release.assets.filter(a => 
-                  a.name.toLowerCase().includes('openwrt') && 
+                  a.name.toLowerCase().includes('istoreos') && 
                   /combined.*efi\.img\.gz$/i.test(a.name)
                 );
                 if (validAssets.length === 0) {
