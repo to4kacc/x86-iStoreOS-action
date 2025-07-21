@@ -26,7 +26,7 @@ jobs:
               repo: context.repo.repo,
             });
             const asset = latest.data.assets.find(a => 
-              a.name.toLowerCase().includes('istoreos') && /a.*combined.*efi\.img\.gz$/i.test(a.name)
+              /istoreos-24\.10\.2.*x86[-_]64.*squashfs.*combined.*efi\.img\.gz$/i.test(a.name)
               );
 
               //a.name.includes('istoreos-24.10.2') && a.name.endsWith('x86-64-squashfs-combined-efi.img.gz'));
