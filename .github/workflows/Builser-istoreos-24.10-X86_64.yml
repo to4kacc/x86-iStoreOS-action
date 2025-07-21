@@ -166,8 +166,7 @@ jobs:
       with:
         name: iStoreOS-24.10.2-X86_64 for ${{ env.DATE }}
         allowUpdates: true
-        #tag: ${{ env.FIRMWARE_TAG }}
-        tag: iStoreOS
+        tag: iStoreOS-$(date +%Y%m%d%H%M%S)
         token: ${{ secrets.GITHUB_TOKEN }}
         artifacts: ${{ env.FIRMWARE_PATH }}/istoreos-24.10.2-*.img.gz
         body: |
