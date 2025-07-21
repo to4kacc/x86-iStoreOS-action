@@ -239,7 +239,9 @@ jobs:
                
                 return {
                   x86_64: release.tag_name,
-                  //build_date: Math.floor(new Date(rele
+                  //build_date: Math.floor(new Date(release.published_at).getTime() / 1000),
+                  build_date: String(buildDate1),
+
                   filename: asset.name,
                   size: asset.size,
                   sha256sum: hash.digest('hex'),
