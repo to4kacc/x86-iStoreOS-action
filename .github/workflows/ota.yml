@@ -104,10 +104,26 @@ jobs:
                 count: sortedFirmwares.length
               };
 
-              // 保存文件
-              fs.mkdirSync('tmp-api', { recursive: true });
-              fs.writeFileSync('tmp-api/fw.json', JSON.stringify(metadata, null, 2));
-              
+
+            const workflowStartTime = workflowRun.data.run_started_at;
+            const buildDate = Math.floor(new Date(workflowStartTime).getTime() / 1000);
+            // 🔧 在这里添加代理前缀
+            const proxiedUrl = asset.browser_download_url;    
+            //const proxiedUrl = 'https://gh.llkk.cc/' + asset.browser_download_url;    
+            
+            const json = {
+              "x86_64": [
+                {
+                  "build_date": String(buildDate),
+                  "sha256sum": sha256,
+                  "url": proxiedUrl  // 使用带代理的URL
+                }
+              ]
+            };
+            const fs = require('fs');
+            fs.mkdirSync('tmp-api', { recursive: true });
+            fs.writeFileSync('tmp-api/fw.json', JSON.stringify(json, null, 4));    
+        
               // 设置输出
               core.setOutput('latest_version', sortedFirmwares[0].version);
               core.setOutput('total_firmwares', sortedFirmwares.length);
