@@ -228,9 +228,18 @@ jobs:
                 const response = await fetch(asset.browser_download_url);
                 await pipeline(response.body, hash);
                 
+                const workflowRun = await github.rest.actions.getWorkflowRun({
+                 owner: context.repo.owner,
+                 repo: context.repo.repo,
+                 run_id: process.env.GITHUB_RUN_ID,
+                });
+                
+               const workflowStartTime = workflowRun.data.run_started_at;
+               const buildDate1 = Math.floor(new Date(workflowStartTime).getTime() / 1000);    
+               
                 return {
                   x86_64: release.tag_name,
-                  build_date: Math.floor(new Date(release.published_at).getTime() / 1000),
+                  //build_date: Math.floor(new Date(rele
                   filename: asset.name,
                   size: asset.size,
                   sha256sum: hash.digest('hex'),
