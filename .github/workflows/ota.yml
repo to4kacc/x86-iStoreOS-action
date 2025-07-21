@@ -59,12 +59,12 @@ jobs:
                 });
                 
                const workflowStartTime = workflowRun.data.run_started_at;
-               //const buildDate = Math.floor(new Date(workflowStartTime).getTime() / 1000);    
+               const buildDate1 = Math.floor(new Date(workflowStartTime).getTime() / 1000);    
                
                 return {
                   x86_64: release.tag_name,
                   //build_date: Math.floor(new Date(release.published_at).getTime() / 1000),
-                  build_date: Math.floor(new Date(workflowStartTime).getTime() / 1000);  
+                  build_date: String(buildDate1)
 
                   filename: asset.name,
                   size: asset.size,
