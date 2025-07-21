@@ -1,6 +1,5 @@
 {
-  "updated_at": "2025-07-21T11:08:21.467Z",
-  "versions": [
+  "x86_64": [
     {
       "x86_64": "OpenWrt",
       "build_date": 1753087313,
