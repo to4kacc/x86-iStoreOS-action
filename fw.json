@@ -2,7 +2,7 @@
   "x86_64": [
     {
       "x86_64": "iStoreOS-X86_64",
-      "build_date": 1753106076,
+      "build_date": "1753106796",
       "filename": "istoreos-24.10.2-2025072121-x86-64-squashfs-combined-efi.img.gz",
       "size": 160976115,
       "sha256sum": "3619425389c67ecc251c542c8af643ccb5be61a46231b9c9a433847ea6f02582",
