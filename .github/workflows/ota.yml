@@ -1,9 +1,8 @@
-name: 生成OTA升级文件（最近5个版本）
+name: 生成OTA升级文件
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '0 2 * * *'  # 每天UTC 2:00自动运行
+
 
 jobs:
   generate:
@@ -55,7 +54,6 @@ jobs:
                 
                 return {
                   x86_64: release.tag_name,
-                  //version: x86_64,
                   build_date: Math.floor(new Date(release.published_at).getTime() / 1000),
                   filename: asset.name,
                   size: asset.size,
