@@ -16,15 +16,32 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: 获取最新发布信息
-        id: get_release
+      - name: 获取最近5个固件
+        id: get_releases
         uses: actions/github-script@v7
         with:
           script: |
-            const latest = await github.rest.repos.getLatestRelease({
-              owner: context.repo.owner,
-              //repo: context.repo.repo,
-            });
+            const fs = require('fs');
+            const crypto = require('crypto');
+            const { promisify } = require('util');
+            const stream = require('stream');
+            const pipeline = promisify(stream.pipeline);
+
+            try {
+              // 1. 获取最近5个发布（分页处理）
+              const releases = await github.paginate(
+                github.rest.repos.listReleases,
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  per_page: 5,  // 只获取最新5个
+                  request: { timeout: 15000 }
+                }
+              );
+
+              if (releases.length === 0) {
+                throw new Error('仓库中没有发布版本');
+              }
             const asset = latest.data.assets.find(a => 
               a.name.toLowerCase().includes('istoreos') && 
               /combined.*efi\.img\.gz$/i.test(a.name)
