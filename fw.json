@@ -1,9 +1,15 @@
 {
-    "x86_64": [
-        {
-            "build_date": "1753087989",
-            "sha256sum": "e8d49e3370d153d5e94203d8cf2eaad86228d9ef72dadd8dee6fe353527f6a89",
-            "url": "https://github.com/sos801107/iStoreOS/releases/download/iStoreOS-Rockchip/istoreos-24.10.2-2025072116-easepi_ars4.img.gz"
-        }
-    ]
+  "updated_at": "2025-07-21T10:36:39.840Z",
+  "versions": [
+    {
+      "version": "OpenWrt",
+      "build_date": 1753087313,
+      "filename": "openwrt-24.10.2-2025072116-x86-64-squashfs-combined-efi.img.gz",
+      "size": 181189225,
+      "sha256sum": "3d70b169f8ef1c148213bec0afd2ff10c0169c68540ea99a44b8bbbee466d0c3",
+      "url": "https://mirror.example.com/sos801107/iStoreOS/releases/download/OpenWrt/openwrt-24.10.2-2025072116-x86-64-squashfs-combined-efi.img.gz",
+      "release_url": "https://github.com/sos801107/iStoreOS/releases/tag/OpenWrt"
+    }
+  ],
+  "count": 1
 }
