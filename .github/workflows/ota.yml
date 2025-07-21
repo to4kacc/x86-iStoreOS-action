@@ -9,12 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      actions: read
     
     steps:
       - name: 检出主分支
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: main
 
       - name: 获取最近5个固件
         id: get_releases
@@ -42,6 +44,66 @@ jobs:
               if (releases.length === 0) {
                 throw new Error('仓库中没有发布版本');
               }
+
+              console.log(`📦 共获取 ${releases.length} 个发布`);
+
+              // 2. 处理每个发布的固件
+              const processAsset = async (release, asset) => {
+                console.log(`⏳ 处理 ${release.tag_name} 的 ${asset.name}`);
+                
+                // 流式下载计算SHA256
+                const hash = crypto.createHash('sha256');
+                const response = await fetch(asset.browser_download_url);
+                await pipeline(response.body, hash);
+                
+                return {
+                  version: release.tag_name,
+                  build_date: Math.floor(new Date(release.published_at).getTime() / 1000),
+                  filename: asset.name,
+                  size: asset.size,
+                  sha256sum: hash.digest('hex'),
+                  url: asset.browser_download_url.replace(
+                    'github.com', 
+                    'mirror.example.com'  // 代理替换
+                  ),
+                  release_url: release.html_url
+                };
+              };
+
+              // 3. 并行处理所有有效固件
+              const allFirmwares = [];
+              for (const release of releases) {
+                const validAssets = release.assets.filter(a => 
+                  a.name.toLowerCase().includes('istoreos') && 
+                  /combined.*efi\.img\.gz$/i.test(a.name)
+                );
+
+                if (validAssets.length === 0) {
+                  console.warn(`⚠️ ${release.tag_name} 无有效固件`);
+                  continue;
+                }
+
+                for (const asset of validAssets) {
+                  allFirmwares.push(await processAsset(release, asset));
+                }
+              }
+
+              if (allFirmwares.length === 0) {
+                throw new Error('所有发布中均未找到有效固件');
+              }
+
+              // 4. 按构建日期降序排序
+              const sortedFirmwares = allFirmwares.sort((a, b) => b.build_date - a.build_date);
+              console.log(`✅ 共处理 ${sortedFirmwares.length} 个有效固件`);
+
+              // 5. 生成元数据
+              const metadata = {
+                updated_at: new Date().toISOString(),
+                versions: sortedFirmwares.slice(0, 5),  // 确保最多5个
+                count: sortedFirmwares.length
+              };
+
+
             const asset = latest.data.assets.find(a => 
               a.name.toLowerCase().includes('istoreos') && 
               /combined.*efi\.img\.gz$/i.test(a.name)
