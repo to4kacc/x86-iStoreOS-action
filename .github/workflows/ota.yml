@@ -29,7 +29,6 @@ jobs:
             const { promisify } = require('util');
             const stream = require('stream');
             const pipeline = promisify(stream.pipeline);
-
             try {
               // 1. 获取最近5个发布（分页处理）
               const releases = await github.paginate(
@@ -41,13 +40,10 @@ jobs:
                   request: { timeout: 15000 }
                 }
               );
-
               if (releases.length === 0) {
                 throw new Error('仓库中没有发布版本');
               }
-
               console.log(`📦 共获取 ${releases.length} 个发布`);
-
               // 2. 处理每个发布的固件
               const processAsset = async (release, asset) => {
                 console.log(`⏳ 处理 ${release.tag_name} 的 ${asset.name}`);
@@ -58,19 +54,19 @@ jobs:
                 await pipeline(response.body, hash);
                 
                 return {
-                  version: release.tag_name,
+                  x86_64: release.tag_name,
+                  //version: x86_64,
                   build_date: Math.floor(new Date(release.published_at).getTime() / 1000),
                   filename: asset.name,
                   size: asset.size,
                   sha256sum: hash.digest('hex'),
                   url: asset.browser_download_url.replace(
-                    'github.com', 
-                    'mirror.example.com'  // 代理替换
+                   // 'github.com', 
+                   // 'mirror.example.com'  // 代理替换
                   ),
                   release_url: release.html_url
                 };
               };
-
               // 3. 并行处理所有有效固件
               const allFirmwares = [];
               for (const release of releases) {
@@ -78,59 +74,38 @@ jobs:
                   a.name.toLowerCase().includes('openwrt') && 
                   /combined.*efi\.img\.gz$/i.test(a.name)
                 );
-
                 if (validAssets.length === 0) {
                   console.warn(`⚠️ ${release.tag_name} 无有效固件`);
                   continue;
                 }
-
                 for (const asset of validAssets) {
                   allFirmwares.push(await processAsset(release, asset));
                 }
               }
-
               if (allFirmwares.length === 0) {
                 throw new Error('所有发布中均未找到有效固件');
               }
-
               // 4. 按构建日期降序排序
               const sortedFirmwares = allFirmwares.sort((a, b) => b.build_date - a.build_date);
               console.log(`✅ 共处理 ${sortedFirmwares.length} 个有效固件`);
-
               // 5. 生成元数据
               const metadata = {
                 updated_at: new Date().toISOString(),
                 versions: sortedFirmwares.slice(0, 5),  // 确保最多5个
                 count: sortedFirmwares.length
               };
-
-
-            
-
-            
-            const json = {
-              "x86_64": [
-                {
-                  //"build_date": String(buildDate),
-                  //"sha256sum": sha256,
-                  "url": asset.browser_download_url  // 使用带代理的URL
-                }
-              ]
-            };
-            const fs = require('fs');
-            fs.mkdirSync('tmp-api', { recursive: true });
-            fs.writeFileSync('tmp-api/fw.json', JSON.stringify(json, null, 4));    
-        
+              // 保存文件
+              fs.mkdirSync('tmp-api', { recursive: true });
+              fs.writeFileSync('tmp-api/fw.json', JSON.stringify(metadata, null, 2));
+              
               // 设置输出
               core.setOutput('latest_version', sortedFirmwares[0].version);
               core.setOutput('total_firmwares', sortedFirmwares.length);
               return metadata;
-
             } catch (error) {
               core.setFailed(`处理失败: ${error.message}`);
               process.exit(1);
             }
-
       - name: 更新API分支
         run: |
           # 配置Git
@@ -154,6 +129,5 @@ jobs:
           else
             echo "⚠️ 无变更需要提交"
           fi
-
       - name: 清理
         run: rm -rf tmp-api
