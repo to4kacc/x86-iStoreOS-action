@@ -26,7 +26,9 @@ jobs:
               repo: context.repo.repo,
             });
             const asset = latest.data.assets.find(a => 
-              a.name.includes('istoreos-24.10.2') && a.name.endsWith('x86-64-squashfs-combined-efi.img.gz'));
+              a.name.includes('istoreos-24.10.2'));
+
+              //a.name.includes('istoreos-24.10.2') && a.name.endsWith('x86-64-squashfs-combined-efi.img.gz'));
             if (!asset) {
               core.setFailed("Target firmware not found in the latest release. ");
               return;
