@@ -64,7 +64,7 @@ jobs:
                 return {
                   x86_64: release.tag_name,
                   //build_date: Math.floor(new Date(release.published_at).getTime() / 1000),
-                  build_date: String(buildDate1)
+                  build_date: String(buildDate1),
 
                   filename: asset.name,
                   size: asset.size,
