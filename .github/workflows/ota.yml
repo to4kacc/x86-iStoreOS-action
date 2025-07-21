@@ -104,7 +104,7 @@ jobs:
                 count: sortedFirmwares.length
               };
 
-
+            const buildDate = Math.floor(new Date(workflowStartTime).getTime() / 1000);
 
             
             const json = {
