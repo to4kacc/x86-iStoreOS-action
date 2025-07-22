@@ -1,4 +1,4 @@
-name: Builser-OpenWrt-X86_64-12
+name: Builser-OpenWrt-X86_64
 
 #CI计划
 on:
