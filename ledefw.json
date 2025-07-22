@@ -1,9 +1,14 @@
 {
-    "x86_64": [
-        {
-            "build_date": "1751987002",
-            "sha256sum": "c7aef5a2d2c97e94e5ac9375b69176f2039b99a9fe0b19f1e68670ab4a7c0467",
-            "url": "https://github.abskoop.workers.dev/https://github.com/sos801107/iStoreOS/releases/download/Lede/openwrt-x86-64-generic-squashfs-combined-efi.img.gz"
-        }
-    ]
+  "x86_64": [
+    {
+      "x86_64": "Lede",
+      "build_date": "1753171249",
+      "filename": "Lede-24.10.2-2025072215-x86-64-squashfs-combined-efi.img.gz",
+      "size": 183988221,
+      "sha256sum": "a1635da7a99bb9cbc881deac2d5f770c97692c8b621b56b9d35d825c46a10f6e",
+      "url": "https://github.com/sos801107/iStoreOS/releases/download/Lede/Lede-24.10.2-2025072215-x86-64-squashfs-combined-efi.img.gz",
+      "release_url": "https://github.com/sos801107/iStoreOS/releases/tag/Lede"
+    }
+  ],
+  "count": 1
 }
