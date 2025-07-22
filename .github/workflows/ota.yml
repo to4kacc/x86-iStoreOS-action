@@ -80,7 +80,7 @@ jobs:
               const allFirmwares = [];
               for (const release of releases) {
                 const validAssets = release.assets.filter(a => 
-                  a.name.toLowerCase().includes('istoreos') && 
+                  a.name.toLowerCase().includes('Lede-24.10.2-') && 
                   /combined.*efi\.img\.gz$/i.test(a.name)
                 );
                 if (validAssets.length === 0) {
@@ -105,7 +105,7 @@ jobs:
               };
               // 保存文件
               fs.mkdirSync('tmp-api', { recursive: true });
-              fs.writeFileSync('tmp-api/fw.json', JSON.stringify(metadata, null, 2));
+              fs.writeFileSync('tmp-api/ledefw.json', JSON.stringify(metadata, null, 2));
               
               // 设置输出
               core.setOutput('latest_version', sortedFirmwares[0].version);
@@ -127,11 +127,11 @@ jobs:
           
           # 更新文件
           mkdir -p tmp-api
-          cp -fv tmp-api/fw.json .
+          cp -fv tmp-api/ledefw.json .
           
           # 提交变更
           if ! git diff --quiet --exit-code; then
-            git add fw.json
+            git add ledefw.json
             git commit -m "更新固件列表: ${{ steps.get_releases.outputs.latest_version }}等${{ steps.get_releases.outputs.total_firmwares }}个版本"
             git push origin api
             echo "✅ 已更新api分支"
