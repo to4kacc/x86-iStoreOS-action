@@ -3,11 +3,11 @@
     {
       "x86_64": "Lede",
       "build_date": "1753171249",
-      "filename": "Lede-24.10.2-2025072215-x86-64-squashfs-combined-efi.img.gz",
-      "size": 183988221,
-      "sha256sum": "a1635da7a99bb9cbc881deac2d5f770c97692c8b621b56b9d35d825c46a10f6e",
-      "url": "https://github.com/sos801107/iStoreOS/releases/download/Lede/Lede-24.10.2-2025072215-x86-64-squashfs-combined-efi.img.gz",
-      "release_url": "https://github.com/sos801107/iStoreOS/releases/tag/Lede"
+      "filename": "immortalwrt-24.10.2-2025072203-x86-64-squashfs-combined-efi.img.gz",
+      "size": 181155586,
+      "sha256sum": "531320de1f9cce8820f0ae547ef6a814025adda5ea81fed8f2ff747eccab821f",
+      "url": "https://github.com/sos801107/iStoreOS/releases/download/ImmortalwWrt-X86_64/immortalwrt-24.10.2-2025072203-x86-64-squashfs-combined-efi.img.gz",
+      "release_url": "https://github.com/sos801107/iStoreOS/releases/tag/ImmortalwWrt-X86_64"
     }
   ],
   "count": 1
