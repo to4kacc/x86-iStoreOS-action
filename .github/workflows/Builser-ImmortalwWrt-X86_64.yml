@@ -1,5 +1,4 @@
-name: Builser-ImmortalwWrt-X86_64-12
-
+name: Builser-ImmortalwWrt-X86_64
 #CI计划
 on:
   #自动编译：当Auto-Clean运行完成后
