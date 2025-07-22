@@ -272,7 +272,7 @@ jobs:
               const allFirmwares = [];
               for (const release of releases) {
                 const validAssets = release.assets.filter(a => 
-                  a.name.toLowerCase().includes('Lede') && 
+                  a.name.toLowerCase().includes('ede-24.10.2-') && 
                   /combined.*efi\.img\.gz$/i.test(a.name)
                 );
                 if (validAssets.length === 0) {
