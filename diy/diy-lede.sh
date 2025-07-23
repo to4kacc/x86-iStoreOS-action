@@ -9,10 +9,10 @@ wget -qO- https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/mai
 wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/mosdns > files/etc/config/mosdns
 wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/smartdns > files/etc/config/smartdns
 
-mkdir -p files/etc
-wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/opkg.conf > files/etc/opkg.conf
-mkdir -p files/etc/opkg
-wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/x86/distfeeds.conf > files/etc/opkg/distfeeds.conf
+#mkdir -p files/etc
+#wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/opkg.conf > files/etc/opkg.conf
+#mkdir -p files/etc/opkg
+#wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/x86/distfeeds.conf > files/etc/opkg/distfeeds.conf
 
 mkdir -p files/root
 wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/.profile > files/root/.profile
