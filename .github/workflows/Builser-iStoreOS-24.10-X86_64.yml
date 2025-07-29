@@ -246,8 +246,8 @@ jobs:
                   size: asset.size,
                   sha256sum: hash.digest('hex'),
                   url: asset.browser_download_url.replace(
-                   // 'github.com', 
-                   // 'mirror.example.com'  // 代理替换
+                    'github.com', 
+                    'pro.sos07.eu.org'  // 代理替换
                   ),
                   release_url: release.html_url
                 };
