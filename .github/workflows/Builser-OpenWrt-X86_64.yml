@@ -255,7 +255,7 @@ jobs:
                   sha256sum: hash.digest('hex'),
                   url: asset.browser_download_url.replace(
                     'github.com', 
-                    'pro.sos07.eu.org'  // 代理替换
+                    'pro.sos07.eu.org/https://github.com'  // 代理替换
                   ),
                   release_url: release.html_url
                 };
