@@ -107,7 +107,7 @@ cp -r feeds/small/dns2socks feeds/packages/net
 cp -r feeds/small/ipt2socks feeds/packages/net
 cp -r feeds/small/microsocks feeds/packages/net
 cp -r feeds/small/geoview feeds/packages/net
-rm -rf package/feeds/packages/rust
+
 rm -rf feeds/istoreos_ipk/patch/istoreos-files
 git clone https://github.com/sos801107/istoreos-files -b main feeds/packages/istoreos-files
 
@@ -187,7 +187,7 @@ chmod +x scripts/get_source_date_epoch.sh
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
