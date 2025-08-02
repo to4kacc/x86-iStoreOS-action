@@ -178,6 +178,9 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
 rm -rf feeds/small/luci-app-openclash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
+rm -rf package/feeds/packages/rust
+git_sparse_clone openwrt-24.10 https://github.com/immortalwrt/packages/lang rust
+
 # 更改时间戳
 rm -rf scripts/get_source_date_epoch.sh
 mkdir -p scripts
