@@ -179,7 +179,15 @@ rm -rf feeds/small/luci-app-openclash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
 rm -rf package/feeds/packages/rust
-git_sparse_clone main https://github.com/sos801107/packages rust
+#git_sparse_clone main https://github.com/sos801107/packages rust
+rm -rf feeds/packages/utils/docker
+rm -rf feeds/packages/utils/dockerd
+rm -rf feeds/packages/utils/docker-compose
+
+git_sparse_clone master https://github.com/coolsnowwolf/packages utils/docker
+git_sparse_clone master https://github.com/coolsnowwolf/packages utils/dockerd
+git_sparse_clone master https://github.com/coolsnowwolf/packages utils/docker-compose
+git_sparse_clone master https://github.com/coolsnowwolf/packages lang/rust
 
 # 更改时间戳
 rm -rf scripts/get_source_date_epoch.sh
