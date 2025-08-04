@@ -186,6 +186,9 @@ chmod +x scripts/get_source_date_epoch.sh
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
+rm -rf feeds/small/sing-box
+git clone https://github.com/SagerNet/sing-box -b dev-next feeds/packages/net/sing-box
+
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
