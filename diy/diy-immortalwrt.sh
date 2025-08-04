@@ -175,6 +175,8 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
 rm -rf feeds/small/luci-app-openclash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
+rm -rf feeds/small/sing-box
+git_sparse_clone main https://github.com/sos801107/packages sing-box
 
 # 更改时间戳
 rm -rf scripts/get_source_date_epoch.sh
@@ -186,8 +188,8 @@ chmod +x scripts/get_source_date_epoch.sh
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
 
-rm -rf feeds/small/sing-box
-git clone https://github.com/SagerNet/sing-box -b dev-next feeds/packages/net/sing-box
+#rm -rf feeds/small/sing-box
+#git clone https://github.com/SagerNet/sing-box -b dev-next feeds/packages/net/sing-box
 
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
