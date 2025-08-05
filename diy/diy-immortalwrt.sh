@@ -172,11 +172,12 @@ git_sparse_clone main https://github.com/kiddin9/kwrt-packages tailscale
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages luci-app-upnp
 git_sparse_clone main https://github.com/kiddin9/kwrt-packages miniupnpd
 
+
 rm -rf feeds/small/luci-app-openclash
 git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
 rm -rf feeds/small/sing-box
-git_sparse_clone main https://github.com/sos801107/packages sing-box
+git_sparse_clone main https://github.com/kiddin9/kwrt-packages sing-box
 
 # 更改时间戳
 rm -rf scripts/get_source_date_epoch.sh
