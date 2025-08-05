@@ -63,58 +63,35 @@ sed -i 's/msgstr "Socat"/msgstr "端口转发"/g' feeds/third_party/luci-app-soc
 sed -i "s/DISTRIB_REVISION='*.*'/DISTRIB_REVISION=' By sos07'/g" package/base-files/files/etc/openwrt_release
 
 # 移除要替换的包
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome}
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,mosdns,v2ray-geodata,v2ray-geoip,chinadns-ng,dns2socks,dns2tcp,microsocks}
 rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
 rm -rf feeds/packages/utils/v2dat
 rm -rf feeds/third_party/luci-app-LingTiGameAcc
-rm -rf feeds/istoreos_ipk/op-daed
+
 rm -rf feeds/third/luci-theme-argon
-rm -rf feeds/istoreos_ipk/patch/istoreos-24.10/istoreos-files
+
 rm -rf feeds/small/{shadowsocksr-libev,shadowsocks-rust,luci-app-ssr-plus,luci-i18n-ssr-plus-zh-cn,luci-app-ssr-plus,luci-i18n-ssr-plus-zh-cn,luci-app-wol,luci-app-bypass,luci-app-argon-config,luci-theme-argon}
 rm -rf feeds/luci/applications/{shadowsocksr-libev,shadowsocks-rust,luci-app-ssr-plus,luci-i18n-ssr-plus-zh-cn,luci-app-ssr-plus,luci-i18n-ssr-plus-zh-cn,luci-app-wol,luci-app-bypass,luci-app-argon-config,luci-theme-argon}
 rm -rf feeds/luci/packages/net/{shadowsocksr-libev-ssr-check,shadowsocksr-libev-ssr-local,shadowsocksr-libev-ssr-redir,shadowsocksr-libev-ssr-server}
 # 将packages源的相关文件替换成passwall_packages源的
-rm -rf feeds/istoreos_ipk/patch/wall-luci/luci-app-passwall
-rm -rf feeds/istoreos_ipk/geoview
+
 rm -rf feeds/third_party/luci-app-smartdns
 rm -rf feeds/third_party/smartdns
-rm -rf feeds/istoreos_ipk/op-mosdns
-rm -rf feeds/istoreos_ipk/xray-core
-rm -rf feeds/istoreos_ipk/sing-box
-rm -rf feeds/istoreos_ipk/chinadns-ng
-rm -rf feeds/istoreos_ipk/microsocks
-rm -rf feeds/istoreos_ipk/dns2socks
-rm -rf feeds/istoreos_ipk/ipt2socks
-rm -rf package/feeds/istoreos_ipk/vlmcsd
-rm -rf feeds/istoreos_ipk/vlmcsd
-rm -rf feeds/istoreos_ipk/vlmcsd
-rm -rf feeds/packages/net/xray-core
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/packages/net/v2ray-geodata
-rm -rf feeds/packages/net/v2ray-geoip
-rm -rf feeds/packages/net/sing-box
-rm -rf feeds/packages/net/chinadns-ng
-rm -rf feeds/packages/net/dns2socks
-rm -rf feeds/packages/net/dns2tcp
-rm -rf feeds/packages/net/microsocks
 
 
-rm -rf feeds/istoreos_ipk/patch/istoreos-files
-rm -rf packages/istoreos-files
-git clone https://github.com/sos801107/istoreos-files -b main feeds/packages/istoreos-files
+
+
 
 rm -rf feeds/small/luci-app-passwall
-rm -rf feeds/kenzo/{luci-app-argon-config,luci-theme-argon}
+
 rm -rf feeds/luci/applications/{luci-app-tailscale,luci-app-turboacc}
+
 # istoreos-theme
+rm -rf feeds/kenzo/{luci-app-argon-config,luci-theme-argon}
+rm -rf feeds/third/{luci-app-argon-config,luci-theme-argon}
 rm -rf feeds/luci/themes/luci-theme-argon
-rm -rf feeds/third/luci-theme-argon
-rm -rf feeds/istoreos_ipk/theme/luci-theme-argon
-#cp -r feeds/theme/luci-theme-argon feeds/luci/themes/luci-theme-argon
-rm -rf feeds/third/luci-app-argon-config
 rm -rf feeds/luci/applications/luci-app-argon-config
-rm -rf feeds/istoreos_ipk/theme/luci-app-argon-config
-#cp -r feeds/theme/luci-app-argon-config feeds/luci/applications/luci-app-argon-config
+
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
@@ -153,11 +130,11 @@ rm -rf package/diy/luci-app-ota
 git_sparse_clone main https://github.com/sos801107/istoreos-ota luci-app-ota
 git_sparse_clone main https://github.com/sos801107/istoreos-ota fw_download_tool
 
-git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
-git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
+#git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-theme-argon
+#git_sparse_clone openwrt-24.10 https://github.com/sbwml/luci-theme-argon luci-app-argon-config
 
-#git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-theme-argon
-#git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-app-argon-config
+git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-theme-argon
+git_sparse_clone main https://github.com/Jaykwok2999/istoreos-theme luci-app-argon-config
 
 git_sparse_clone main https://github.com/xiaorouji/openwrt-passwall luci-app-passwall
 git_sparse_clone luci https://github.com/chenmozhijin/turboacc luci-app-turboacc
@@ -173,6 +150,9 @@ git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
 rm -rf feeds/small/sing-box
 git_sparse_clone main https://github.com/sos801107/packages sing-box
+
+rm -rf packages/istoreos-files
+git_sparse_clone main https://github.com/sos801107/packages istoreos-files
 
 # 更改时间戳
 rm -rf scripts/get_source_date_epoch.sh
