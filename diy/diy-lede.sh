@@ -16,6 +16,12 @@ wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main
 mkdir -p files/root
 wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/.profile > files/root/.profile
 
+# 更改时间戳
+rm -rf scripts/get_source_date_epoch.sh
+mkdir -p scripts
+wget -qO- https://raw.githubusercontent.com/Jaykwok2999/istoreos-actions/refs/heads/main/patch/get_source_date_epoch.sh > scripts/get_source_date_epoch.sh
+chmod +x scripts/get_source_date_epoch.sh
+
 #修改默认IP地址
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/192.168.1.1/g" ./package/base-files/files/bin/config_generate
 #修改默认主机名
@@ -109,12 +115,6 @@ git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 rm -rf package/diy/luci-app-ota
 git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
 git_sparse_clone lede https://github.com/sos801107/istoreos-ota fw_download_tool
-
-# 更改时间戳
-rm -rf scripts/get_source_date_epoch.sh
-mkdir -p scripts
-wget -qO- https://raw.githubusercontent.com/Jaykwok2999/istoreos-ipk/refs/heads/main/patch/get_source_date_epoch.sh > scripts/get_source_date_epoch.sh
-chmod +x scripts/get_source_date_epoch.sh
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
