@@ -2,11 +2,11 @@
   "x86_64": [
     {
       "x86_64": "OpenWrt-X86_64",
-      "build_date": "1757779932",
-      "filename": "openwrt-24.10.2-2025091402-x86-64-squashfs-combined-efi.img.gz",
-      "size": 196682186,
-      "sha256sum": "57180e2f81a47dc36531b09d034d65be497394c2e8f846535c5927b5147133d8",
-      "url": "https://pro.sos07.eu.org/https://github.com/to4kacc/-iStoreOS-action/releases/download/OpenWrt-X86_64/openwrt-24.10.2-2025091402-x86-64-squashfs-combined-efi.img.gz",
+      "build_date": "1757866303",
+      "filename": "openwrt-24.10.2-2025091502-x86-64-squashfs-combined-efi.img.gz",
+      "size": 196682077,
+      "sha256sum": "968b3ce41d231d2b7b8ba43ce8ac699ba3b748aa6949527f0ff07be636ccb3d8",
+      "url": "https://pro.sos07.eu.org/https://github.com/to4kacc/-iStoreOS-action/releases/download/OpenWrt-X86_64/openwrt-24.10.2-2025091502-x86-64-squashfs-combined-efi.img.gz",
       "release_url": "https://github.com/to4kacc/-iStoreOS-action/releases/tag/OpenWrt-X86_64"
     }
   ],
