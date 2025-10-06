@@ -114,8 +114,8 @@ git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 
 #在线OTA
 rm -rf package/diy/luci-app-ota
-git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
-git_sparse_clone lede https://github.com/sos801107/istoreos-ota fw_download_tool
+#git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
+#git_sparse_clone lede https://github.com/sos801107/istoreos-ota fw_download_tool
 
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
