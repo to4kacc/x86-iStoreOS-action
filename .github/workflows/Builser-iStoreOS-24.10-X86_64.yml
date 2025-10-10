@@ -143,8 +143,8 @@ jobs:
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
         
-        mv istoreos-x86-64-generic-squashfs-combined-efi.img.gz istoreos-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined-efi.img.gz
-        mv istoreos-x86-64-generic-squashfs-combined.img.gz istoreos-24.10.2-$(date +"%Y%m%d%H")-x86-64-squashfs-combined.img.gz
+        mv istoreos-x86-64-generic-squashfs-combined-efi.img.gz istoreos-24.10.3-$(date +"%Y%m%d%H")-x86-64-squashfs-combined-efi.img.gz
+        mv istoreos-x86-64-generic-squashfs-combined.img.gz istoreos-24.10.3-$(date +"%Y%m%d%H")-x86-64-squashfs-combined.img.gz
 
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
@@ -164,11 +164,11 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
-        name: iStoreOS-24.10.2-X86_64 for ${{ env.DATE }}
+        name: iStoreOS-24.10.3-X86_64 for ${{ env.DATE }}
         allowUpdates: true
         tag: iStoreOS-X86_64
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/istoreos-24.10.2-*.img.gz
+        artifacts: ${{ env.FIRMWARE_PATH }}/istoreos-24.10.3-*.img.gz
         body: |
           ### 📒 固件信息
           💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
