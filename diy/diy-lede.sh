@@ -54,9 +54,9 @@ rm -rf feeds/third/{luci-app-argon-config,luci-theme-argon}
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf packages/istoreos-files
-rm -rf feeds/packages/libs/libfido2
-rm -rf feeds/package/kernel/mt76
-rm -rf package/kernel/mt76
+#rm -rf feeds/packages/libs/libfido2
+#rm -rf feeds/package/kernel/mt76
+#rm -rf package/kernel/mt76
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
