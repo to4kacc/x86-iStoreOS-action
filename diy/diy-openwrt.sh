@@ -50,6 +50,7 @@ rm -rf feeds/third/{luci-app-argon-config,luci-theme-argon}
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
 rm -rf packages/istoreos-files
+rm -rf feeds/turboaccpackage/nft-fullcone
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
