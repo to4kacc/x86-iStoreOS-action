@@ -170,7 +170,7 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
-        name: iStoreOS-24.10.3-Mediatek for ${{ env.DATE }}
+        name: iStoreOS-24.10.4-Mediatek for ${{ env.DATE }}
         allowUpdates: true
         tag: iStoreOS-Mediatek
         token: ${{ secrets.GITHUB_TOKEN }}
