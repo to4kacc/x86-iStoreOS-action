@@ -150,8 +150,8 @@ jobs:
       run: |
         cd $OPENWRT_PATH/bin/targets/*/*
         
-        mv openwrt-x86-64-generic-squashfs-combined-efi.img.gz openwrt-24.10.3-$(date +"%Y%m%d%H")-x86-64-squashfs-combined-efi.img.gz
-        mv openwrt-x86-64-generic-squashfs-combined.img.gz openwrt-24.10.3-$(date +"%Y%m%d%H")-x86-64-squashfs-combined.img.gz
+        mv openwrt-x86-64-generic-squashfs-combined-efi.img.gz openwrt-24.10.4-$(date +"%Y%m%d%H")-x86-64-squashfs-combined-efi.img.gz
+        mv openwrt-x86-64-generic-squashfs-combined.img.gz openwrt-24.10.4-$(date +"%Y%m%d%H")-x86-64-squashfs-combined.img.gz
 
         cat sha256sums
         cp $OPENWRT_PATH/.config build.config
@@ -172,11 +172,11 @@ jobs:
       if: steps.compile.outputs.status == 'success' && env.FIRMWARE_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
-        name: OpenWrt-24.10.3-X86_64 for ${{ env.DATE }}
+        name: OpenWrt-24.10.4-X86_64 for ${{ env.DATE }}
         allowUpdates: true
         tag: OpenWrt-X86_64
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/openwrt-24.10.3*.img.gz
+        artifacts: ${{ env.FIRMWARE_PATH }}/openwrt-24.10.4*.img.gz
         body: |
           ### 📒 固件信息
           💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
