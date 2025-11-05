@@ -165,7 +165,7 @@ jobs:
         #tag: ${{ env.FIRMWARE_TAG }}
         tag: iStoreOS-rootfs
         token: ${{ secrets.GITHUB_TOKEN }}
-        artifacts: ${{ env.FIRMWARE_PATH }}/*
+        artifacts: ${{ env.FIRMWARE_PATH }}/istoreos-armsr-armv8-generic-rootfs.tar.gz
         body: |
           ### 📒 固件信息
           💻 平台架构: ${{ env.DEVICE_TARGET }}-${{ env.DEVICE_SUBTARGET }}
