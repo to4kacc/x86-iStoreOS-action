@@ -125,6 +125,9 @@ git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/l
 # ophub/amlogic
 git_sparse_clone main https://github.com/ophub/luci-app-amlogic luci-app-amlogic
 
+# sbwml/openwrt_pkgs
+git_sparse_clone main https://github.com/sbwml/openwrt_pkgs filebrowser luci-app-filebrowser-go luci-app-ramfree
+
 # UPnP
 rm -rf feeds/{packages/net/miniupnpd,luci/applications/luci-app-upnp}
 git clone https://git.kejizero.online/zhao/miniupnpd feeds/packages/net/miniupnpd -b v2.3.7
