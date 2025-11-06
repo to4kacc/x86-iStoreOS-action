@@ -1,4 +1,7 @@
 #!/bin/bash
+# 集成config
+wget -qO- https://raw.githubusercontent.com/Kwonelee/iStoreOS-Actions/refs/heads/main/files/etc/rc.local > package/base-files/files/etc/rc.local
+
 mkdir -p files/etc/config
 #wget -qO- https://raw.githubusercontent.com/sos801107/TL-XDR608X/refs/heads/main/etc/openclash > files/etc/config/openclash
 wget -qO- https://raw.githubusercontent.com/liandu2024/clash/refs/heads/main/main_router/openclash > files/etc/config/openclash
