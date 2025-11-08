@@ -111,6 +111,7 @@ git_sparse_clone dev https://github.com/vernesong/OpenClash luci-app-openclash
 #git_sparse_clone main https://github.com/sos801107/packages sing-box
 #git_sparse_clone main https://github.com/sos801107/packages istoreos-files
 
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
 #在线OTA
 rm -rf package/diy/luci-app-ota
