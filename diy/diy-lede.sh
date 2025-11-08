@@ -120,6 +120,8 @@ rm -rf package/diy/luci-app-ota
 #git_sparse_clone lede https://github.com/sos801107/istoreos-ota luci-app-ota
 #git_sparse_clone lede https://github.com/sos801107/istoreos-ota fw_download_tool
 
+git clone https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+
 # golong1.24.2依赖
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 25.x feeds/packages/lang/golang
